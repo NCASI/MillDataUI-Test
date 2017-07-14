@@ -29,6 +29,8 @@ namespace MillDataUI
         {
             // Add framework services.
             services.AddMvc();
+            /*services.AddDbContext<MillDataContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +46,7 @@ namespace MillDataUI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/MillInformations/Error");
             }
 
             app.UseStaticFiles();
@@ -53,7 +55,7 @@ namespace MillDataUI
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=MillInformation}/{action=Index}/{id?}");
             });
         }
     }

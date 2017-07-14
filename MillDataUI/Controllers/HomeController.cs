@@ -10,6 +10,7 @@ namespace MillDataUI.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Message"] = "I am index.";
             return View();
         }
 
