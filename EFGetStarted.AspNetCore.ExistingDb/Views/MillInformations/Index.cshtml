@@ -3,6 +3,27 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+       
+    .container {
+        width: 1600px;
+    }
+
+    table, tr {
+        /*table-layout: fixed;*/
+        width: 100px;
+    }
+    td, thead {
+        word-wrap: break-word
+    }
+    tr:hover {
+        background-color: skyblue;
+        border-top: solid;
+        cursor: pointer;
+    }
+
+
+</style>
 
 <h2>Index</h2>
 
@@ -12,78 +33,79 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.MillId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Company)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Latitude)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Longitude)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Naprodcat)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProdCat1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProdCat2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShippingAddress)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShippingAddress2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShippingCity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShippingState)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShippingPostcode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShippingCountry)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostalAddress)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostalAddress2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostalCity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostalState)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostalPostcode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostalCountry)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Eparegion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Website)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comments)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MillStatus)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StatusDate)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MillId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naprodcat)
+            </th>
+            <th data-toggle="tooltip" title="Primary production category of mill." data-placement="right">
+
+                @Html.DisplayNameFor(model => model.ProdCat1)
+            </th>
+            <th data-toggle="tooltip" title="Secondary production category of mill." data-placement="right">
+                @Html.DisplayNameFor(model => model.ProdCat2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingAddress2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingPostcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingCountry)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.PostalAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalAddress2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalPostcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCountry)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Eparegion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MillStatus)
+            </th>
+            <th data-toggle="tooltip" title="Date status became effective." data-placement="right">
+                @Html.DisplayNameFor(model => model.StatusDate)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FkEpasubcat)
             </th>
@@ -91,11 +113,11 @@
                 @Html.DisplayNameFor(model => model.FkMillType)
             </th>
             <th></th>
-        </tr>
-    </thead>
+            </tr>
+</thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+@foreach (var item in Model.Take(10)) {
+        <tr  onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'"> 
             <td>
                 @Html.DisplayFor(modelItem => item.MillId)
             </td>
@@ -135,7 +157,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ShippingCountry)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PostalAddress)
             </td>
             <td>
@@ -152,7 +174,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostalCountry)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Eparegion)
             </td>
@@ -175,9 +197,9 @@
                 @Html.DisplayFor(modelItem => item.FkMillType.PkTypeId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PkMillKey">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a>
             </td>
         </tr>
 }
