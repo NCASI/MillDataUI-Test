@@ -3,7 +3,19 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    .dl-horizontal dt{
+        overflow: auto;
+        width:200px;
+        align-content:right;
 
+    }
+
+    .dl-horizontal dd{
+        margin-left: 20%;
+    }
+
+</style>
 <h2>Details</h2>
 
 <div>
@@ -26,14 +38,21 @@
             @Html.DisplayNameFor(model => model.Latitude)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Latitude)
+           @{
+
+               string latval = Model.Latitude;
+               latval = latval.Trim('"');
+               string longval = Model.Longitude;
+               longval = longval.Trim('"');
+               latval = latval.Replace("\"\"", "\"");
+               longval = longval.Replace("\"\"", "\"");
+               string coordinate = latval + ", " + longval;
+        }
+        <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
+            @Html.DisplayFor(modelItem => coordinate)
+        </a>
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
+       
         <dt>
             @Html.DisplayNameFor(model => model.Naprodcat)
         </dt>
@@ -52,6 +71,7 @@
         <dd>
             @Html.DisplayFor(model => model.ProdCat2)
         </dd>
+        <hr>
         <dt>
             @Html.DisplayNameFor(model => model.ShippingAddress)
         </dt>
@@ -88,6 +108,7 @@
         <dd>
             @Html.DisplayFor(model => model.ShippingCountry)
         </dd>
+        <br>
         <dt>
             @Html.DisplayNameFor(model => model.PostalAddress)
         </dt>
@@ -124,6 +145,7 @@
         <dd>
             @Html.DisplayFor(model => model.PostalCountry)
         </dd>
+        <hr>
         <dt>
             @Html.DisplayNameFor(model => model.Eparegion)
         </dt>
@@ -134,13 +156,24 @@
             @Html.DisplayNameFor(model => model.Website)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Website)
+         @{
+             string website = Model.Website;
+             if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
+             { website = ""; }
+        }
+            <a href="@Model.Website">
+            @Html.DisplayFor(model => website)</a>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Comments)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Comments)
+            @{
+                string comstr = Model.Comments;
+                if (String.Compare(comstr, "NULL") == 0)
+                { comstr = ""; }
+            }
+            @Html.DisplayFor(modelItem => comstr)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.MillStatus)

@@ -32,6 +32,8 @@ namespace EFGetStarted.AspNetCore.ExistingDb.Models
 
         
         public string Company { get; set; }
+
+        [DisplayName("Coordinates")]
         public string Latitude { get; set; }
         public string Longitude { get; set; }
 
@@ -61,12 +63,26 @@ namespace EFGetStarted.AspNetCore.ExistingDb.Models
 
         [DisplayName("Postcode")]
         public string ShippingPostcode { get; set; }
+
+        [DisplayName("")]
         public string ShippingCountry { get; set; }
+
+        [DisplayName("Postal Address")]
         public string PostalAddress { get; set; }
+
+        [DisplayName("")]
         public string PostalAddress2 { get; set; }
+
+        [DisplayName("City")]
         public string PostalCity { get; set; }
+
+        [DisplayName("State")]
         public string PostalState { get; set; }
+
+        [DisplayName("Postcode")]
         public string PostalPostcode { get; set; }
+
+        [DisplayName("")]
         public string PostalCountry { get; set; }
 
         [DisplayName("EPA Region")]
