@@ -1,0 +1,9 @@
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\bin\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.deps.json
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\bin\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.runtimeconfig.json
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\bin\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.runtimeconfig.dev.json
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\bin\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.dll
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\obj\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.csprojResolveAssemblyReference.cache
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\obj\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.AssemblyInfo.cs
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\bin\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.pdb
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\obj\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.dll
+C:\Users\adityag\Documents\GitHub\MillDataUI-Test\EFGetStarted.AspNetCore.ExistingDb\obj\Debug\netcoreapp1.1\EFGetStarted.AspNetCore.ExistingDb.pdb
