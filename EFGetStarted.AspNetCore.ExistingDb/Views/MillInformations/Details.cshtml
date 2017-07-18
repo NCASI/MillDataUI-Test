@@ -39,18 +39,26 @@
         </dt>
         <dd>
            @{
-
                string latval = Model.Latitude;
-               latval = latval.Trim('"');
                string longval = Model.Longitude;
-               longval = longval.Trim('"');
-               latval = latval.Replace("\"\"", "\"");
-               longval = longval.Replace("\"\"", "\"");
-               string coordinate = latval + ", " + longval;
+               if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
+                   String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
+               {
+
+
+                   latval = latval.Trim('"');
+
+                   longval = longval.Trim('"');
+                   latval = latval.Replace("\"\"", "\"");
+                   longval = longval.Replace("\"\"", "\"");
+                   string coordinate = latval + ", " + longval;
+                <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
+                    @Html.DisplayFor(modelItem => coordinate)
+                </a>
+               }
+
         }
-        <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
-            @Html.DisplayFor(modelItem => coordinate)
-        </a>
+     
         </dd>
        
         <dt>

@@ -19,9 +19,11 @@
     tr:hover {
         background-color: skyblue;
         border-top: solid;
+        
+    }
+    .clickable {
         cursor: pointer;
     }
-
 
 </style>
 
@@ -114,28 +116,36 @@
             </tr>
 </thead>
     <tbody>
-@foreach (var item in Model.Take(10))
+@foreach (var item in Model)
 {
         <tr> 
-            <td onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
+            <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
                 @Html.DisplayFor(modelItem => item.MillId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Company)
             </td>
             <td >
-                @{ 
+                @{
                     string latval = item.Latitude;
-                    latval = latval.Trim('"');
                     string longval = item.Longitude;
-                    longval = longval.Trim('"');
-                    latval = latval.Replace("\"\"", "\"");
-                    longval = longval.Replace("\"\"", "\"");
-                    string coordinate = latval + ", " + longval;
+                    if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
+                        String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
+                    {
+
+
+                        latval = latval.Trim('"');
+
+                        longval = longval.Trim('"');
+                        latval = latval.Replace("\"\"", "\"");
+                        longval = longval.Replace("\"\"", "\"");
+                        string coordinate = latval + ", " + longval;
+                        <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
+                            @Html.DisplayFor(modelItem => coordinate)
+                        </a>
+                    }
                 }
-                <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
-                    @Html.DisplayFor(modelItem => coordinate)
-                </a>
+                
 
 
             </td>
