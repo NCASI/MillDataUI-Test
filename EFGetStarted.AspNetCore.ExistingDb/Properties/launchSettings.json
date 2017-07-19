@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "EFGetStarted.AspNetCore.ExistingDb": {
+    "MillData": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

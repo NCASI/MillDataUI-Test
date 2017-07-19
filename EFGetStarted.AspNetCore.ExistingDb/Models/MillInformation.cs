@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace EFGetStarted.AspNetCore.ExistingDb.Models
+namespace MillData.Models
 {
     public partial class MillInformation
     {

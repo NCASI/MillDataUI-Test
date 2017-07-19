@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EFGetStarted.AspNetCore.ExistingDb.Models
+namespace MillData.Models
 {
     public partial class MillContactInfo
     {

@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using EFGetStarted.AspNetCore.ExistingDb.Models;
+using MillData.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EFGetStarted.AspNetCore.ExistingDb
+namespace MillData
 {
     public class Startup
     {

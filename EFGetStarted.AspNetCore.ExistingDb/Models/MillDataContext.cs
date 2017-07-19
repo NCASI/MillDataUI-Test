@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace EFGetStarted.AspNetCore.ExistingDb.Models
+namespace MillData.Models
 {
     public partial class MillDataContext : DbContext
     {

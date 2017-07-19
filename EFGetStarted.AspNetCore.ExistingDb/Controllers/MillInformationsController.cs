@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using EFGetStarted.AspNetCore.ExistingDb.Models;
+using MillData.Models;
 
-namespace EFGetStarted.AspNetCore.ExistingDb.Controllers
+namespace MillData.Controllers
 {
     public class MillInformationsController : Controller
     {
