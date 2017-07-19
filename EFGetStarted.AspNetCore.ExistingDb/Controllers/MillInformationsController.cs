@@ -162,4 +162,19 @@ namespace EFGetStarted.AspNetCore.ExistingDb.Controllers
             return _context.MillInformation.Any(e => e.PkMillKey == id);
         }
     }
+
+    public class MillSearchModel
+    {
+        public int? MillId { get; set; }
+    }
+
+    public class MillLogic
+    {
+        private MillDataContext MillContext;
+        public MillLogic()
+        {
+            MillContext = new MillDataContext();
+        }
+    }
+
 }

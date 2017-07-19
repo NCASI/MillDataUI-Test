@@ -27,7 +27,11 @@
 
 </style>
 
-<h2>Index</h2>
+<h2>Mill Information</h2>
+<form>
+    Search Mill ID: <input type="Text" />
+</form>
+<br />
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -116,7 +120,7 @@
             </tr>
 </thead>
     <tbody>
-@foreach (var item in Model)
+@foreach (var item in Model.Take(100))
 {
         <tr> 
             <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
