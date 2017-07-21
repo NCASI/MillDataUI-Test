@@ -23,7 +23,21 @@ namespace MillData.Controllers
         {
             ViewBag.IDSortParam = String.IsNullOrEmpty(sortOrder);
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
-            var results = millDataContext.OrderBy(s => s.FkEpasubcatId).ToListAsync();
+            var results = millDataContext.ToListAsync();
+            switch(sortOrder)
+            {
+                case "epa":
+                    results = millDataContext.OrderBy(s => s.FkEpasubcatId).ToListAsync();
+                    break;
+                case "id":
+                    results = millDataContext.OrderByDescending(s => s.MillId).ToListAsync();
+                    break;
+                default:
+                    results = millDataContext.ToListAsync();
+                    break;
+            }
+
+            
             
             return View(await results);
         }

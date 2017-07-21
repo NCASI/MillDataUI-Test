@@ -41,7 +41,8 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MillId)
+                @Html.ActionLink("Mill ID", "Index", new { sortOrder = "id" })
+                @*@Html.DisplayNameFor(model => model.MillId)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Company)
@@ -112,7 +113,8 @@
                 @Html.DisplayNameFor(model => model.StatusDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FkEpasubcat)
+                @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = "epa" })
+                @*@Html.DisplayNameFor(model => model.FkEpasubcat)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FkMillType)
