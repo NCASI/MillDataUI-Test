@@ -17,7 +17,8 @@ namespace MillData.Models
         public int? MillId { get; set; }
         public void getID(int id)
         {
-            MillId = id;
+            this.MillId = id;
+            
         }
     }
 

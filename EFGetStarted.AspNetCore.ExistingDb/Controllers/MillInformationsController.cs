@@ -19,10 +19,13 @@ namespace MillData.Controllers
         }
 
         // GET: MillInformations
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewBag.IDSortParam = String.IsNullOrEmpty(sortOrder);
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
-            return View(await millDataContext.ToListAsync());
+            var results = millDataContext.OrderBy(s => s.FkEpasubcatId).ToListAsync();
+            
+            return View(await results);
         }
 
         // GET: MillInformations/Details/5
