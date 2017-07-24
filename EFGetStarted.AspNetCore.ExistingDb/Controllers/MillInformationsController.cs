@@ -23,8 +23,14 @@ namespace MillData.Controllers
          * GET: MillInformations
          * 
          * ARGUMENTS:
-         *  -sortOrder: passed as GET param, tells the system which field to sort by
-         *  -IDSearchString: value to search Mill ID by
+         *  -sortOrder: passed as GET param, tells the system which field to sort by.
+         *  -IDSearchString: value to search Mill ID by.
+         *  
+         * INPUT:
+         *  Uses the a context of type MillDataContext (see MillDataContext.cs).
+         * 
+         * OUTPUT:
+         *  Returns a View of mill information results.
          *  
          *  ************************************************************************/
         public async Task<IActionResult> Index(string sortOrder, string IDSearchString)
@@ -33,11 +39,11 @@ namespace MillData.Controllers
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
             var results = millDataContext.ToList();
             int idsearch = 0;
+
             //handle the Mill ID search param
             if (!String.IsNullOrEmpty(IDSearchString))
             {
                 //parse the string into an int
-                
                 Int32.TryParse(IDSearchString, out idsearch);
                 Console.WriteLine(IDSearchString);
                     
@@ -52,8 +58,6 @@ namespace MillData.Controllers
             ViewBag.IDSort = sortOrder == "id" ? "id_desc" : "id";
             ViewBag.EPASort = sortOrder == "epa" ? "epa_desc" : "epa";
 
-
-            
             switch(sortOrder)
             {
                 case "epa":
@@ -72,8 +76,6 @@ namespace MillData.Controllers
                     results = millDataContext.ToList();
                     break;
             }
-            
-            
             
             return View(results);
         }
