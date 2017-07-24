@@ -19,19 +19,31 @@ namespace MillData.Controllers
             _context = context;    
         }
 
-        // GET: MillInformations
+        /***************************************************************************
+         * GET: MillInformations
+         * 
+         * ARGUMENTS:
+         *  -sortOrder: passed as GET param, tells the system which field to sort by
+         *  -IDSearchString: value to search Mill ID by
+         *  
+         *  ************************************************************************/
         public async Task<IActionResult> Index(string sortOrder, string IDSearchString)
         {
-            Debug.WriteLine(IDSearchString);
+            //Create the mill data context and the results object to be modified
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
-            var results = millDataContext.ToList(); //from s in millDataContext select s;
-
+            var results = millDataContext.ToList();
             int idsearch = 0;
+            //handle the Mill ID search param
             if (!String.IsNullOrEmpty(IDSearchString))
             {
+                //parse the string into an int
+                
                 Int32.TryParse(IDSearchString, out idsearch);
                 Console.WriteLine(IDSearchString);
-                results = results.Where(s => s.PkMillKey.Equals(idsearch)).ToList();
+                    
+                //filter the results by mill ID
+                //equivalent of SELECT * FROM MillInformation WHERE PK_MillKey = MillID
+                results = results.Where(s => s.MillId.Equals(idsearch)).ToList();
                 return View(results);
             }
 
