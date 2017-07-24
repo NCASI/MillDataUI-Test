@@ -28,10 +28,14 @@
 </style>
 
 <h2>Mill Information</h2>
-<form action="~/Models/MillSearchModel/getID" method="post">
-    Search Mill ID: <input type="Text" />
-    <input type="submit"/>
-</form>
+@using (Html.BeginForm())
+{
+    <p>
+        Search Mill ID: @Html.TextBox("IDSearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <br />
 
 <p>
@@ -41,21 +45,7 @@
     <thead>
         <tr>
             <th>
-                @{
-                    int ascending = 1;
-                    switch (ascending)
-                    {
-                        case 0:
-                            ascending = 1;
-                            break;
-                        case 1:
-                            ascending = 0;
-                            break;
-                        default:
-                            break;
-
-                    }
-                }@Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
+                @Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
                 @*@Html.DisplayNameFor(model => model.MillId)*@
             </th>
             <th>

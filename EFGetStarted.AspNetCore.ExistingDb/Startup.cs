@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MillData.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ApplicationInsights.Extensibility;
 
 namespace MillData
 {
@@ -16,6 +17,7 @@ namespace MillData
     {
         public Startup(IHostingEnvironment env)
         {
+            TelemetryConfiguration.Active.DisableTelemetry = true;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

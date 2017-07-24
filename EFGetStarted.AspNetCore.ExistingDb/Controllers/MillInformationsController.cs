@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,14 +20,28 @@ namespace MillData.Controllers
         }
 
         // GET: MillInformations
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string IDSearchString)
         {
+            Debug.WriteLine(IDSearchString);
+            var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
+            var results = millDataContext.ToList(); //from s in millDataContext select s;
+
+            int idsearch = 0;
+            if (!String.IsNullOrEmpty(IDSearchString))
+            {
+                Int32.TryParse(IDSearchString, out idsearch);
+                Console.WriteLine(IDSearchString);
+                results = results.Where(s => s.PkMillKey.Equals(idsearch)).ToList();
+                return View(results);
+            }
+
             ViewBag.IDSort = String.IsNullOrEmpty(sortOrder) ? "id" : "";
             ViewBag.EPASort = String.IsNullOrEmpty(sortOrder) ? "epa" : "";
             ViewBag.IDSort = sortOrder == "id" ? "id_desc" : "id";
             ViewBag.EPASort = sortOrder == "epa" ? "epa_desc" : "epa";
-            var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
-            var results = millDataContext.ToList();
+
+
+            
             switch(sortOrder)
             {
                 case "epa":
