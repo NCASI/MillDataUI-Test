@@ -21,25 +21,34 @@ namespace MillData.Controllers
         // GET: MillInformations
         public async Task<IActionResult> Index(string sortOrder)
         {
-            ViewBag.IDSortParam = String.IsNullOrEmpty(sortOrder);
+            ViewBag.IDSort = String.IsNullOrEmpty(sortOrder) ? "id" : "";
+            ViewBag.EPASort = String.IsNullOrEmpty(sortOrder) ? "epa" : "";
+            ViewBag.IDSort = sortOrder == "id" ? "id_desc" : "id";
+            ViewBag.EPASort = sortOrder == "epa" ? "epa_desc" : "epa";
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
-            var results = millDataContext.ToListAsync();
+            var results = millDataContext.ToList();
             switch(sortOrder)
             {
                 case "epa":
-                    results = millDataContext.OrderBy(s => s.FkEpasubcatId).ToListAsync();
+                    results = millDataContext.OrderBy(s => s.FkEpasubcatId).ToList();
+                    break;
+                case "epa_desc":
+                    results = millDataContext.OrderByDescending(s => s.FkEpasubcatId).ToList();
+                    break;
+                case "id_desc":
+                    results = millDataContext.OrderByDescending(s => s.MillId).ToList();
                     break;
                 case "id":
-                    results = millDataContext.OrderByDescending(s => s.MillId).ToListAsync();
+                    results = millDataContext.OrderBy(s => s.MillId).ToList();
                     break;
                 default:
-                    results = millDataContext.ToListAsync();
+                    results = millDataContext.ToList();
                     break;
             }
-
             
             
-            return View(await results);
+            
+            return View(results);
         }
 
         // GET: MillInformations/Details/5

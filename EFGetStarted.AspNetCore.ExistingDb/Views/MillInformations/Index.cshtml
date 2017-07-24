@@ -41,7 +41,21 @@
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Mill ID", "Index", new { sortOrder = "id" })
+                @{
+                    int ascending = 1;
+                    switch (ascending)
+                    {
+                        case 0:
+                            ascending = 1;
+                            break;
+                        case 1:
+                            ascending = 0;
+                            break;
+                        default:
+                            break;
+
+                    }
+                }@Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
                 @*@Html.DisplayNameFor(model => model.MillId)*@
             </th>
             <th>
@@ -113,7 +127,7 @@
                 @Html.DisplayNameFor(model => model.StatusDate)
             </th>
             <th>
-                @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = "epa" })
+                @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = ViewBag.EPASort })
                 @*@Html.DisplayNameFor(model => model.FkEpasubcat)*@
             </th>
             <th>
@@ -209,7 +223,7 @@
                 @{
                     string website = item.Website;
                     if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
-                    { website = ""; }
+                        { website = ""; }
                 }
                 <a href="@website" target="_blank">
                     @Html.DisplayFor(modelItem => website)
