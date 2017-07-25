@@ -4,19 +4,82 @@
     ViewData["Title"] = "Index";
 }
 <style>
-       
-    .container {
-        width: 1600px;
+    html, body{
+        overflow-x:hidden;
+        height: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .datasheet, .subform, .form{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 
-    table, tr {
-        /*table-layout: fixed;*/
-        width: 100px;
+    .datasheet {
+
+        height: 35%;
+        
+        position: fixed;
+        float: left;
+        overflow-x: auto;
+        /*overflow-y: scroll;*/
+        border-bottom: solid black;
+        border-width: medium;
+
     }
-    td, thead {
-        word-wrap: break-word
+    .subform {
+        height: 35%;
+        margin-top: 1%;
+        margin-bottom: 2.5%;
+        position: absolute;
+        bottom: 0;
+        float: left;
+        overflow-x: auto;
+        overflow-y: scroll;
     }
-    tr:hover {
+
+    footer, .footer {
+        width:100%;
+        height: auto;
+        float:left;
+        position: absolute;
+        bottom: 0;
+    }
+    .footerline {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        bottom: 20px;
+    }
+
+    /*table thead tr {
+        display: block;
+       
+    }
+    th, td{
+        max-width: 100px;
+        min-width: 100px;
+        
+   
+        padding-left: auto;
+        padding-right: auto;
+    }
+
+    table tbody {
+        display:block;
+        height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        word-break:unset;
+    }*/
+    
+    .epasubcat{
+        text-align:center;
+    }
+
+    tbody tr:hover {
         background-color: skyblue;
         border-top: solid;
         
@@ -26,237 +89,155 @@
     }
 
 </style>
-
-<h2>Mill Information</h2>
-@using (Html.BeginForm())
-{
-    <p>
-        Search Mill ID:<span id="searchbox"> @Html.TextBox("IDSearchString")</span>
-        <input type="submit" value="Search" />
-        <script>
-            var searchterm = document.getElementById("searchbox").lastChild.attributes[3].value;
-            if (searchterm != "")
-            {
-                if (isNaN(searchterm))
-                {
-                    alert("Error: Please enter a numerical Mill ID.");
-                }
-                console.log(searchterm, isNaN(searchterm));
-            }
-
-
-        </script>
-    </p>
-}
-
-<br />
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
-                @*@Html.DisplayNameFor(model => model.MillId)*@
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Naprodcat)
-            </th>
-            <th data-toggle="tooltip" title="Primary production category of mill." data-placement="right">
-
-                @Html.DisplayNameFor(model => model.ProdCat1)
-            </th>
-            <th data-toggle="tooltip" title="Secondary production category of mill." data-placement="right">
-                @Html.DisplayNameFor(model => model.ProdCat2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShippingAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShippingAddress2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShippingCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShippingState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShippingPostcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShippingCountry)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.PostalAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalAddress2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalPostcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCountry)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Eparegion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Website)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comments)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MillStatus)
-            </th>
-            <th data-toggle="tooltip" title="Date status became effective." data-placement="right">
-                @Html.DisplayNameFor(model => model.StatusDate)
-            </th>
-            <th>
-                @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = ViewBag.EPASort })
-                @*@Html.DisplayNameFor(model => model.FkEpasubcat)*@
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.FkMillType)
-            </th>*@
-            </tr>
-</thead>
-    <tbody>
-@foreach (var item in Model)
-{
-        <tr> 
-            <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
-                @Html.DisplayFor(modelItem => item.MillId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company)
-            </td>
-            <td >
-                @{
-                    string latval = item.Latitude;
-                    string longval = item.Longitude;
-                    if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
-                        String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
-                    {
-
-
-                        latval = latval.Trim('"');
-
-                        longval = longval.Trim('"');
-                        latval = latval.Replace("\"\"", "\"");
-                        longval = longval.Replace("\"\"", "\"");
-                        string coordinate = latval + ", " + longval;
-                        <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
-                            @Html.DisplayFor(modelItem => coordinate)
-                        </a>
+<div class="form">
+    <h2>Mill Information</h2>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search Mill ID:<span id="searchbox"> @Html.TextBox("IDSearchString")</span>
+            <input type="submit" value="Search" />
+            <script>
+                var searchterm = document.getElementById("searchbox").lastChild.attributes[3].value;
+                if (searchterm != "") {
+                    if (isNaN(searchterm)) {
+                        alert("Error: Please enter a numerical Mill ID.");
                     }
+                    console.log(searchterm, isNaN(searchterm));
                 }
+
+
+            </script>
+        </p>
+    }
+
+    <br />
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+</div>
+<div class="datasheet">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
+                    @*@Html.DisplayNameFor(model => model.MillId)*@
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkMillType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MillStatus)
+                </th>
+                <th data-toggle="tooltip" title="Date status became effective." data-placement="right">
+                    @Html.DisplayNameFor(model => model.StatusDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingAddress2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingCity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingState)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingPostcode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingCountry)
+                </th>
+              
+                <th>
+                    @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = ViewBag.EPASort })
+                  
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naprodcat)
+                </th>
+                <th data-toggle="tooltip" title="Primary production category of mill." data-placement="right">
+
+                    @Html.DisplayNameFor(model => model.ProdCat1)
+                </th>
+                <th data-toggle="tooltip" title="Secondary production category of mill." data-placement="right">
+                    @Html.DisplayNameFor(model => model.ProdCat2)
+                </th>
                 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Take(100))
+            {
+                <tr>
+                    <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
+                        @Html.DisplayFor(modelItem => item.MillId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FkMillType.PkTypeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MillStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusDate)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+              
 
-
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Naprodcat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdCat1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProdCat2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingAddress2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingPostcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingCountry)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.PostalAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalAddress2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalPostcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCountry)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Eparegion)
-            </td>
-            <td>
-                @{
-                    string website = item.Website;
-                    if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
-                        { website = ""; }
-                }
-                <a href="@website" target="_blank">
-                    @Html.DisplayFor(modelItem => website)
-                </a>
-            </td>
-            <td>
-                @{ 
-                    string comstr = item.Comments;
-                    if (String.Compare(comstr, "NULL") == 0)
-                        { comstr = ""; }
-                }
-                @Html.DisplayFor(modelItem => comstr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MillStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkEpasubcat.Subcat)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.FkMillType.PkTypeId)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingAddress2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingState)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingPostcode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingCountry)
+                    </td>
+                    
+                    <td class="epasubcat">
+                        @Html.DisplayFor(modelItem => item.FkEpasubcat.Subcat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naprodcat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProdCat1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProdCat2)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a>
+                    </td>
+                </tr>
+                            }
+        </tbody>
+    </table>
+</div>
+<div class="subform">
+    f<br />f<br />f<br />f<br />f<br />f<br />f<br />f<br />f<br />f<br />
+    
+</div>

@@ -73,7 +73,7 @@ namespace MillData.Controllers
                     results = millDataContext.OrderBy(s => s.MillId).ToList();
                     break;
                 default:
-                    results = millDataContext.ToList();
+                    results = millDataContext.OrderBy(s => s.MillId).ToList();
                     break;
             }
             
