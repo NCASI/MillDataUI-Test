@@ -133,10 +133,9 @@
                 @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = ViewBag.EPASort })
                 @*@Html.DisplayNameFor(model => model.FkEpasubcat)*@
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FkMillType)
-            </th>
-            <th></th>
+            </th>*@
             </tr>
 </thead>
     <tbody>
@@ -249,9 +248,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FkEpasubcat.Subcat)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.FkMillType.PkTypeId)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a>
                 <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a>

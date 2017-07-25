@@ -36,7 +36,7 @@ namespace MillData.Controllers
         public async Task<IActionResult> Index(string sortOrder, string IDSearchString)
         {
             //Create the mill data context and the results object to be modified
-            var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat).Include(m => m.FkMillType);
+            var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat);
             var results = millDataContext.ToList();
             int idsearch = 0;
 
