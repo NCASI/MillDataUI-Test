@@ -176,7 +176,7 @@
         <tbody>
             @foreach (var item in Model.Take(100))
             {
-                <tr>
+                <tr class="clickable" onclick="location.href = '@(Url.Action("Index", "MillInformations", new { id = item.PkMillKey }))'">
                     <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
                         @Html.DisplayFor(modelItem => item.MillId)
                     </td>
@@ -228,9 +228,9 @@
                         @Html.DisplayFor(modelItem => item.ProdCat2)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a>
-                        <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a>
+                        <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a><br />
+                        <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a><br />
+                        <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a><br />
                     </td>
                 </tr>
                             }
@@ -238,6 +238,5 @@
     </table>
 </div>
 <div class="subform">
-    f<br />f<br />f<br />f<br />f<br />f<br />f<br />f<br />f<br />f<br />
-    
+   
 </div>
