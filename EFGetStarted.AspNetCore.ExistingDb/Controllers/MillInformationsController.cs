@@ -77,28 +77,28 @@ namespace MillData.Controllers
                     break;
             }
             
-            if (id != null)
-            {
-                string flowdataquery = @"SELECT MillInformation.MillID
-                              ,FlowData.s[FlowDescription]
-                              ,FlowData.[FlowMMGD]
-                              ,FlowData.[RetDays]
-                              ,FlowData.[WaterBodyType]
-                              ,FlowData.[WaterBodyName]
-                              ,FlowData.[WaterBodySegment]
-                              ,FlowData.[WaterBodyMile]
-                              ,FlowData.[FK_SourceID]
-                              ,FlowData.[SourceYear]
-                              , FlowData.Comments
-                          FROM[MillData].[dbo].[FlowData] INNER JOIN MillInformation ON PK_MillKey = FK_MillKey";
+            //if (id != null)
+            //{
+            //    string flowdataquery = @"SELECT MillInformation.MillID
+            //                  ,FlowData.s[FlowDescription]
+            //                  ,FlowData.[FlowMMGD]
+            //                  ,FlowData.[RetDays]
+            //                  ,FlowData.[WaterBodyType]
+            //                  ,FlowData.[WaterBodyName]
+            //                  ,FlowData.[WaterBodySegment]
+            //                  ,FlowData.[WaterBodyMile]
+            //                  ,FlowData.[FK_SourceID]
+            //                  ,FlowData.[SourceYear]
+            //                  , FlowData.Comments
+            //              FROM[MillData].[dbo].[FlowData] INNER JOIN MillInformation ON PK_MillKey = FK_MillKey";
 
-                var detailed = _context.FlowData
-                    .FromSql(flowdataquery)
-                    .ToList();
-
+            //    var detailed = _context.FlowData
+            //        .FromSql(flowdataquery)
+            //        .ToList();
+                
 
                 
-            }
+            //}
 
 
             return View(results);

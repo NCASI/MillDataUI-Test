@@ -233,11 +233,17 @@
                         <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a><br />
                     </td>
                 </tr>
-                            }
+            }
         </tbody>
     </table>
 </div>
 <div class="subform">
-    <vc:milldetail >
-    </vc:milldetail>
+    @{
+    @model MillData.Models.MillInformation
+    if (Model != null)
+    {
+        Html.Partial("~/Views/MillInformations/Details.cshtml", Model);
+    }
+    }
+
 </div>
