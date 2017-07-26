@@ -33,7 +33,7 @@ namespace MillData.Controllers
          *  Returns a View of mill information results.
          *  
          *  ************************************************************************/
-        public async Task<IActionResult> Index(string sortOrder, string IDSearchString)
+        public async Task<IActionResult> Index(string sortOrder, string IDSearchString, int? id)
         {
             //Create the mill data context and the results object to be modified
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat);
@@ -77,6 +77,30 @@ namespace MillData.Controllers
                     break;
             }
             
+            if (id != null)
+            {
+                string flowdataquery = @"SELECT MillInformation.MillID
+                              ,FlowData.s[FlowDescription]
+                              ,FlowData.[FlowMMGD]
+                              ,FlowData.[RetDays]
+                              ,FlowData.[WaterBodyType]
+                              ,FlowData.[WaterBodyName]
+                              ,FlowData.[WaterBodySegment]
+                              ,FlowData.[WaterBodyMile]
+                              ,FlowData.[FK_SourceID]
+                              ,FlowData.[SourceYear]
+                              , FlowData.Comments
+                          FROM[MillData].[dbo].[FlowData] INNER JOIN MillInformation ON PK_MillKey = FK_MillKey";
+
+                var detailed = _context.FlowData
+                    .FromSql(flowdataquery)
+                    .ToList();
+
+
+                
+            }
+
+
             return View(results);
         }
 
