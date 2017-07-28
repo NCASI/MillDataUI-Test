@@ -5,19 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using MillData.Models;
 
-namespace ViewComponentSample.ViewComponents
+namespace MillData.ViewComponents
 {
-    public class MillDetailViewComponent : ViewComponent
+    public class MillDetail : ViewComponent
     {
         private readonly MillDataContext db;
 
-        public MillDetailViewComponent(MillDataContext context)
+        public MillDetail(MillDataContext context)
         {
             db = context;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(
-        int maxPriority, bool isDone)
+        int id)
         {
             var items = await GetItemsAsync(id);
             return View(items);

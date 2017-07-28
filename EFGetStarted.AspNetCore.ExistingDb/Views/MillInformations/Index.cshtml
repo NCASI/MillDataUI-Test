@@ -1,6 +1,7 @@
 @model IEnumerable<MillData.Models.MillInformation>
-
+@using MillData.ViewComponents
 @{
+    
     ViewData["Title"] = "Index";
 }
 <style>
@@ -238,12 +239,9 @@
     </table>
 </div>
 <div class="subform">
-    @{
-    @model MillData.Models.MillInformation
-    if (Model != null)
-    {
-        Html.Partial("~/Views/MillInformations/Details.cshtml", Model);
-    }
-    }
+   
+   
+        @await Component.InvokeAsync("MillDetail", new { id = 1 })
+    
 
 </div>
