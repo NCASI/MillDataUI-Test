@@ -1,7 +1,9 @@
-
-@{
-    ViewData["Title"] = "Default";
-}
-
-<h2>Default</h2>
+@model IEnumerable <MillData.Models.MillInformation>
+<h3>Priority Items</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.ProductionData</li>
+    }
+</ul>
 
