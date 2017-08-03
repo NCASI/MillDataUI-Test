@@ -190,8 +190,7 @@
                         @Html.DisplayFor(modelItem => item.MillStatus)
                     </td>
                     <td>
-                        @{ string datetime = item.StatusDate.Value.Date.ToString();
-                            if (!(String.IsNullOrEmpty(datetime) || String.IsNullOrWhiteSpace(datetime)))
+                        @{ if (item.StatusDate != null && item.StatusDate.Value != null)
                             {
                                 string date = item.StatusDate.Value.ToString("MM/dd/yyyy");
                                 @Html.DisplayFor(model => date)

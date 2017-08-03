@@ -79,8 +79,8 @@ namespace MillData.Controllers
 
             if (id != null)
             {
-                //results = results.Where(s => s.MillId.Equals(id)).ToList();
-                //return View(results);
+                results = results.Where(s => s.MillId >= id).ToList();
+                return View(results);
 
             }
 

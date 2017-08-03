@@ -193,8 +193,8 @@
             @Html.DisplayNameFor(model => model.StatusDate)
         </dt>
         <dd>
-           @{ string datetime = Model.StatusDate.Value.Date.ToString();
-               if (!(String.IsNullOrEmpty(datetime) || String.IsNullOrWhiteSpace(datetime)))
+           @{ 
+               if (Model.StatusDate != null && Model.StatusDate.Value != null)
                {
                    string date = Model.StatusDate.Value.ToString("MM/dd/yyyy");
                 @Html.DisplayFor(model => date)
