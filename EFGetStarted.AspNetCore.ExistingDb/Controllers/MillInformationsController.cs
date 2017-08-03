@@ -76,29 +76,13 @@ namespace MillData.Controllers
                     results = millDataContext.OrderBy(s => s.MillId).ToList();
                     break;
             }
-            
-            //if (id != null)
-            //{
-            //    string flowdataquery = @"SELECT MillInformation.MillID
-            //                  ,FlowData.s[FlowDescription]
-            //                  ,FlowData.[FlowMMGD]
-            //                  ,FlowData.[RetDays]
-            //                  ,FlowData.[WaterBodyType]
-            //                  ,FlowData.[WaterBodyName]
-            //                  ,FlowData.[WaterBodySegment]
-            //                  ,FlowData.[WaterBodyMile]
-            //                  ,FlowData.[FK_SourceID]
-            //                  ,FlowData.[SourceYear]
-            //                  , FlowData.Comments
-            //              FROM[MillData].[dbo].[FlowData] INNER JOIN MillInformation ON PK_MillKey = FK_MillKey";
 
-            //    var detailed = _context.FlowData
-            //        .FromSql(flowdataquery)
-            //        .ToList();
-                
+            if (id != null)
+            {
+                //results = results.Where(s => s.MillId.Equals(id)).ToList();
+                //return View(results);
 
-                
-            //}
+            }
 
 
             return View(results);

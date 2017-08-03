@@ -1,35 +1,36 @@
 @model IEnumerable<MillData.Models.MillInformation>
 @using MillData.ViewComponents
+@using System.Net.Http
 @{
-    
+
     ViewData["Title"] = "Index";
 }
 <style>
-    html, body{
-        overflow-x:hidden;
+    html, body {
+        overflow-x: hidden;
         height: 100%;
     }
-    .container{
+
+    .container {
         width: 100%;
     }
-    .datasheet, .subform, .form{
+
+    .datasheet, .subform, .form {
         width: 90%;
         margin-left: 5%;
         margin-right: 5%;
     }
 
     .datasheet {
-
         height: 35%;
-        
         position: fixed;
         float: left;
         overflow-x: auto;
         /*overflow-y: scroll;*/
         border-bottom: solid black;
         border-width: medium;
-
     }
+
     .subform {
         height: 35%;
         margin-top: 1%;
@@ -42,12 +43,13 @@
     }
 
     footer, .footer {
-        width:100%;
+        width: 100%;
         height: auto;
-        float:left;
+        float: left;
         position: absolute;
         bottom: 0;
     }
+
     .footerline {
         width: 100%;
         height: auto;
@@ -57,13 +59,13 @@
 
     /*table thead tr {
         display: block;
-       
+
     }
     th, td{
         max-width: 100px;
         min-width: 100px;
-        
-   
+
+
         padding-left: auto;
         padding-right: auto;
     }
@@ -75,21 +77,21 @@
         overflow-x: hidden;
         word-break:unset;
     }*/
-    
-    .epasubcat{
-        text-align:center;
+
+    .epasubcat {
+        text-align: center;
     }
 
     tbody tr:hover {
         background-color: skyblue;
         border-top: solid;
-        
     }
+
     .clickable {
         cursor: pointer;
     }
-
 </style>
+
 <div class="form">
     <h2>Mill Information</h2>
     @using (Html.BeginForm())
@@ -239,9 +241,20 @@
     </table>
 </div>
 <div class="subform">
-   
-   
-        @Component.InvokeAsync(nameof(MillDetail), new { id = 1 })
-    
 
+    @{string path = Context.Request.Path.ToString();
+        if (path != "/")
+        {
+            var split = path.Split('/');
+
+            int chosenid = Int32.Parse(split[3]);
+            @chosenid
+
+            @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+
+        }
+
+
+
+    }
 </div>

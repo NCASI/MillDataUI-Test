@@ -7,6 +7,7 @@ using MillData.Models;
 
 namespace MillData.ViewComponents
 {
+
     public class MillDetail : ViewComponent
     {
         private readonly MillDataContext db;
@@ -19,13 +20,15 @@ namespace MillData.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(
         int id)
         {
-            var items = await GetItemsAsync(id);
+            var items = await GetItems(id);
             return View(items);
         }
-        private Task<List<MillInformation>> GetItemsAsync(int id)
+        private Task<List<MillInformation>> GetItems(int id)
         {
 
-            var result = db.MillInformation.ToListAsync();
+
+            var result = db.MillInformation.Where(x => x.MillId == id).ToListAsync();
+
             return result;
         }
     }

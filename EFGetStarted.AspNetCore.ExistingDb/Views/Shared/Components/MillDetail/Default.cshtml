@@ -1,9 +1,11 @@
 @model IEnumerable <MillData.Models.MillInformation>
-<h3>Priority Items</h3>
-<ul>
+<h3>Mill Detail</h3>
+<dl>
     @foreach (var item in Model)
     {
-        <li>@item.ProductionData</li>
+        <dd>
+            @item.Comments
+        </dd>
     }
-</ul>
+</dl>
 
