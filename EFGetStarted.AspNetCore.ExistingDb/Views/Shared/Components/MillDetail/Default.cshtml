@@ -1,11 +1,107 @@
 @model IEnumerable <MillData.Models.MillInformation>
 <h3>Mill Detail</h3>
-<dl>
-    @foreach (var item in Model)
-    {
-        <dd>
-            @item.Comments
-        </dd>
+<style>
+    .leftdiv, .middiv, .rightdiv{
+        float:left;
+        width:200px;
+        margin-left: 5%;
+        margin-right: 5%;
     }
-</dl>
+    dd{
+        margin-bottom:1%;
+    }
+   
 
+</style>
+<div class="leftdiv">
+    <dl>
+        @foreach (var item in Model)
+        {
+
+            <dt>Mill ID</dt>
+            <dd>@item.MillId</dd>
+            if (item.FkMillType != null)
+            {
+                <dt>Mill Type</dt>
+                <dd>@item.FkMillType</dd>
+            }
+
+            <dt>Company</dt>
+            <dd>@item.Company</dd>
+            <dt>Coordinates</dt>
+            <dd>
+                @{
+                    string latval = item.Latitude;
+                    string longval = item.Longitude;
+                    if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
+                        String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
+                    {
+
+
+                        latval = latval.Trim('"');
+
+                        longval = longval.Trim('"');
+                        latval = latval.Replace("\"\"", "\"");
+                        longval = longval.Replace("\"\"", "\"");
+                        string coordinate = latval + ", " + longval;
+                    <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
+                        @Html.DisplayFor(modelItem => coordinate)
+                    </a>
+                    }
+
+            }
+        </dd>
+            <dt>Shipping Address</dt>
+            <dd>@item.ShippingAddress @item.ShippingAddress2
+        <br />@item.ShippingCity @item.ShippingState @item.ShippingPostcode
+        <br />  @item.ShippingCountry</dd>
+         }
+    </dl>
+
+</div>
+<div class="middiv">
+
+    <dl>
+        @foreach (var item in Model)
+        {
+
+          
+            <dt>Postal Address</dt>
+            <dd>
+                @item.PostalAddress @item.PostalAddress2
+                <br />@item.PostalCity @item.PostalState @item.PostalPostcode
+                <br />  @item.PostalCountry
+            </dd>
+            <dt>EPA Region</dt>
+            <dd>@item.Eparegion</dd>
+            <dt>Website</dt>
+            <dd>@item.Website</dd>
+            <dt>Comments</dt>
+            <dd>@item.Comments</dd>
+ 
+           }
+        </dl>
+</div>
+<div class="rightdiv">
+
+    <dl>
+        @foreach (var item in Model)
+        {
+
+            <dt>Mill Status</dt>
+            <dd>@item.MillStatus</dd>
+            <dt>Status Last Updated</dt>
+            <dd>
+                @{ string datetime = item.StatusDate.Value.Date.ToString();
+                    if (!(String.IsNullOrEmpty(datetime) || String.IsNullOrWhiteSpace(datetime)))
+                    {
+                        string date = item.StatusDate.Value.ToString("MM/dd/yyyy");
+                        @Html.DisplayFor(model => date)
+                    }
+                }
+            </dd>
+            <dt>EPA Subcategory</dt>
+            <dd><strong>@item.FkEpasubcat.Subcat</strong> | @item.FkEpasubcat.SubcatDescription</dd>
+   }
+    </dl>
+</div>

@@ -190,7 +190,13 @@
                         @Html.DisplayFor(modelItem => item.MillStatus)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.StatusDate)
+                        @{ string datetime = item.StatusDate.Value.Date.ToString();
+                            if (!(String.IsNullOrEmpty(datetime) || String.IsNullOrWhiteSpace(datetime)))
+                            {
+                                string date = item.StatusDate.Value.ToString("MM/dd/yyyy");
+                                @Html.DisplayFor(model => date)
+                            }
+                        }
                     </td>
                     
                     <td>
@@ -248,7 +254,6 @@
             var split = path.Split('/');
 
             int chosenid = Int32.Parse(split[3]);
-            @chosenid
 
             @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
 

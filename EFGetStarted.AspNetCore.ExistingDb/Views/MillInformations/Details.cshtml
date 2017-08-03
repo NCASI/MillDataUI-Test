@@ -193,8 +193,14 @@
             @Html.DisplayNameFor(model => model.StatusDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.StatusDate)
-        </dd>
+           @{ string datetime = Model.StatusDate.Value.Date.ToString();
+               if (!(String.IsNullOrEmpty(datetime) || String.IsNullOrWhiteSpace(datetime)))
+               {
+                   string date = Model.StatusDate.Value.ToString("MM/dd/yyyy");
+                @Html.DisplayFor(model => date)
+               }
+            }
+          </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FkEpasubcat)
         </dt>
