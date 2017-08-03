@@ -64,18 +64,38 @@
     <dl>
         @foreach (var item in Model)
         {
-
-          
             <dt>Postal Address</dt>
+            if (item.FkEpasubcat != null)
+            {
+
             <dd>
-                @item.PostalAddress @item.PostalAddress2
-                <br />@item.PostalCity @item.PostalState @item.PostalPostcode
-                <br />  @item.PostalCountry
+                @item.PostalAddress @item.PostalAddress2</dd>
+            }
+            <dd>
+                @item.PostalCity @item.PostalState @item.PostalPostcode
+                @item.PostalCountry
             </dd>
+
             <dt>EPA Region</dt>
             <dd>@item.Eparegion</dd>
+
+            <dd>
+                @{
+                    string website = item.Website;
+                    if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
+                    { website = ""; }
+
+
+                    if (!(String.IsNullOrEmpty(website) || String.IsNullOrWhiteSpace(website)))
+                    {
             <dt>Website</dt>
-            <dd>@item.Website</dd>
+                <a href="@website">
+                    
+                    @Html.DisplayFor(model => website)
+                </a>
+                    }
+                }
+            </dd>
             <dt>Comments</dt>
             <dd>@item.Comments</dd>
  
@@ -100,8 +120,11 @@
                     }
                 }
             </dd>
-            <dt>EPA Subcategory</dt>
-            <dd><strong>@item.FkEpasubcat.Subcat</strong> | @item.FkEpasubcat.SubcatDescription</dd>
-   }
+
+                    if (item.FkEpasubcat != null)
+                    {
+                        <dt>EPA Subcategory</dt>
+            <dd><strong>@item.FkEpasubcat.Subcat</strong> | @item.FkEpasubcat.SubcatDescription</dd>}
+       }
     </dl>
 </div>

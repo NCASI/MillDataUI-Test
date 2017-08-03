@@ -179,7 +179,7 @@
         <tbody>
             @foreach (var item in Model.Take(100))
             {
-                <tr class="clickable" onclick="location.href = '@(Url.Action("Index", "MillInformations", new { id = item.PkMillKey }))'">
+                <tr class="clickable" onclick="location.href = '@(Url.Action("Index", "MillInformations", new { id = item.MillId }))'">
                     <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
                         @Html.DisplayFor(modelItem => item.MillId)
                     </td>
