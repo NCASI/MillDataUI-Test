@@ -68,7 +68,7 @@
 	        {
 		        <dt>Shipping Address</dt>
                 <dd>@item.ShippingAddress @item.ShippingAddress2
-                <br />@item.ShippingCity @item.ShippingState @item.ShippingPostcode
+                <br />@item.ShippingCity, @item.ShippingState, @item.ShippingPostcode
                 <br />  @item.ShippingCountry</dd> 
 	        }
          }
@@ -87,7 +87,7 @@
                     if (item.PostalAddress != null)
                     {<dd> @item.PostalAddress @item.PostalAddress2</dd>}
                     <dd>
-                        @item.PostalCity @item.PostalState @item.PostalPostcode
+                        @item.PostalCity, @item.PostalState, @item.PostalPostcode<br />
                         @item.PostalCountry
                     </dd> 
 	        }
