@@ -41,7 +41,7 @@ namespace MillData.ViewComponents
                 .Include(m => m.FkProdCat.Category)
                 .SingleOrDefaultAsync(m => m.FkMillKey == id);
 
-            return ViewData["ProdData"] = prodData;
+            return View(prodData);
         }
     }
 }
