@@ -20,7 +20,7 @@ namespace MillData.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(
         int id)
         {
-            var items = await GetProdData(id);
+            var items = await GetItems(id);
             return View(items);
         }
         private Task<List<MillInformation>> GetItems(int id)

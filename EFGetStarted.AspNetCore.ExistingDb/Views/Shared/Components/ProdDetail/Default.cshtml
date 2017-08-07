@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MillData.Models.ProductionData>
+﻿@model IEnumerable <MillData.Models.ProductionData>
 <h3>Mill Detail</h3>
 <style>
     .leftdiv, .middiv, .rightdiv {
@@ -16,9 +16,25 @@
     <dl>
         @foreach (var item in Model)
         {
+            <dt>Num</dt>
+            <dd>@Model.Count()</dd>
             //Mill ID
             <dt>Mill ID</dt>
             <dd>@item.FkMillKey</dd>
+
+            <dt>Prodcat</dt>
+            <dd>@item.FkProdCat.ProdCatDescription</dd>
+
+            <dt>Quantity</dt>
+            <dd>@item.Quantity</dd>
+            <dd>@item.Units</dd>
+
+            <dt>Source</dt>
+            <dd>@item.FkSource</dd>
+            <dd>@item.SourceYear</dd>
+
+            <dt>Comments</dt>
+            <dd>@item.Comments</dd>
         }
         @*//Mill Type
         if (item.FkMillType != null)
