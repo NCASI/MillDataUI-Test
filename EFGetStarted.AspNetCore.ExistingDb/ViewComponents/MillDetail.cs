@@ -33,19 +33,5 @@ namespace MillData.ViewComponents
 
             return result;
         }
-        public async Task<List<ProductionData>> GetProdDataWrapper(int? id)
-        {
-            var result = await GetProdData(id).ToAsyncEnumerable().ToList();
-            return result;
-        }
-        public Task<ProductionData> GetProdData(int? id)
-        {
-            var prodData = db.ProductionData
-                .Include(m => m.FkProdCat)
-                .Include(m => m.FkProdCat)
-                .FirstOrDefaultAsync(m => m.FkMillKey == id);
-
-            return prodData;
-        }
     }
 }

@@ -1,3 +1,156 @@
-﻿@model MillData.Models.ProductionData
-@{
-}
+﻿@model IEnumerable<MillData.Models.ProductionData>
+<h3>Mill Detail</h3>
+<style>
+    .leftdiv, .middiv, .rightdiv {
+        float: left;
+        width: 200px;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    dd {
+        margin-bottom: 1%;
+    }
+</style>
+<div class="leftdiv">
+    <dl>
+        @foreach (var item in Model)
+        {
+            //Mill ID
+            <dt>Mill ID</dt>
+            <dd>@item.FkMillKey</dd>
+        }
+        @*//Mill Type
+        if (item.FkMillType != null)
+        {
+                <dt>Mill Type</dt>
+                <dd>@item.FkMillType</dd>
+            }
+
+            //Company
+            if (item.Company != null)
+            {
+                <dt>Company</dt>
+                <dd>@item.Company</dd>
+            }
+
+            //Coordinates
+            if (item.Latitude != null && item.Longitude != null)
+            {
+                <dt>Coordinates</dt>
+                <dd>
+                    @{
+                        string latval = item.Latitude;
+                        string longval = item.Longitude;
+                        if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
+                            String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
+                        {
+
+
+                            latval = latval.Trim('"');
+
+                            longval = longval.Trim('"');
+                            latval = latval.Replace("\"\"", "\"");
+                            longval = longval.Replace("\"\"", "\"");
+                            string coordinate = latval + ", " + longval;
+                            <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
+                                @Html.DisplayFor(modelItem => coordinate)
+                            </a>
+                        }
+
+                    }
+                </dd>
+                        }
+
+                        //Shipping Address
+                        if (item.ShippingAddress != null || item.ShippingCity != null || item.ShippingState != null || item.ShippingCountry != null || item.ShippingPostcode != null)
+                        {
+                            <dt>Shipping Address</dt>
+                            <dd>
+                                @item.ShippingAddress @item.ShippingAddress2
+                                <br />@item.ShippingCity, @item.ShippingState, @item.ShippingPostcode
+                                <br />  @item.ShippingCountry
+                            </dd>
+                            }
+                        }
+    </dl>
+
+</div>
+<div class="middiv">
+
+    <dl>
+        @foreach (var item in Model)
+        {
+            //Postal Address
+            if (item.PostalCity != null || item.PostalState != null || item.PostalCountry != null || item.PostalPostcode != null)
+            {
+                <dt>Postal Address</dt>
+                if (item.PostalAddress != null)
+                {
+        <dd> @item.PostalAddress @item.PostalAddress2</dd>}
+                <dd>
+                    @item.PostalCity, @item.PostalState, @item.PostalPostcode<br />
+                    @item.PostalCountry
+                </dd>
+            }
+
+            //EPA Region
+            if (item.Eparegion != null)
+            {
+        <dt>EPA Region</dt>
+            <dd>@item.Eparegion</dd>}
+
+
+            //Website
+            string website = item.Website;
+            if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
+            { website = ""; }
+            if (!(String.IsNullOrEmpty(website) || String.IsNullOrWhiteSpace(website)))
+            {
+                <dt>Website</dt>
+                <dd>
+                    <a href="@website">
+                        @Html.DisplayFor(model => website)
+                    </a>
+                </dd>
+            }
+
+            //Comments
+            if (item.Comments != null)
+            {
+                <dt>Comments</dt>
+                <dd>@item.Comments</dd>
+            }
+
+        }
+    </dl>
+</div>
+<div class="rightdiv">
+
+    <dl>
+        @foreach (var item in Model)
+        {
+            //Mill Status
+            if (item.MillStatus != null)
+            {
+                <dt>Mill Status</dt>
+                <dd>@item.MillStatus</dd>
+            }
+
+            //Status Date
+            if (item.StatusDate != null && item.StatusDate.Value != null)
+            {
+                string date = item.StatusDate.Value.ToString("MM/dd/yyyy");
+                <dt>Status Last Updated</dt>
+                <dd>@date</dd>
+            }
+
+            //EPA Subcat
+            if (item.FkEpasubcat != null)
+            {
+                <dt>EPA Subcategory</dt>
+                <dd><strong>@item.FkEpasubcat.Subcat</strong> | @item.FkEpasubcat.SubcatDescription</dd>
+            }
+        }*@
+    </dl>
+</div>
