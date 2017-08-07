@@ -90,6 +90,16 @@
     .clickable {
         cursor: pointer;
     }
+    .detail{
+        width:90%;
+        float:left;
+        padding-left:3em;
+    }
+    #detailnav{
+        width:10%;
+        float:left;
+    }
+
 </style>
 
 <div class="form">
@@ -245,17 +255,19 @@
         </tbody>
     </table>
 </div>
+    
 <div class="subform">
 
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
-        <li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
+    <ul class="nav nav-pills nav-stacked" role="tablist" id="detailnav">
+        <li role="presentation" id="sidebutton" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
+        <li role="presentation" id="sidebutton"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
     </ul>
 
     
 
-    @{string path = Context.Request.Path.ToString();
+    <div class="detail">
+        @{string path = Context.Request.Path.ToString();
         if (path != "/")
         {
             var split = path.Split('/');
@@ -270,12 +282,10 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="second">
                     @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
-                   
+
                 </div>
             </div>
         }
-
-
-
     }
+</div>
 </div>
