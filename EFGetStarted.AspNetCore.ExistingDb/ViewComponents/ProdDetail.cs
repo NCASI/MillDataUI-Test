@@ -25,7 +25,7 @@ namespace MillData.ViewComponents
         {
             var prodData = db.ProductionData
                 .Include(m => m.FkProdCat)
-                .Include(m => m.FkProdCat)
+                .Include(m => m.FkSource)
                 .Where(m => m.FkMillKey == id);
 
             return prodData.ToListAsync();

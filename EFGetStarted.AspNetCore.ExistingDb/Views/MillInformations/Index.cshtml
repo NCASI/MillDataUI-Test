@@ -247,6 +247,14 @@
 </div>
 <div class="subform">
 
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
+        <li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
+    </ul>
+
+    
+
     @{string path = Context.Request.Path.ToString();
         if (path != "/")
         {
@@ -254,8 +262,17 @@
 
             int chosenid = Int32.Parse(split[3]);
 
-            @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
-
+            //@await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="first">
+                    @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+                </div>
+                <div role="tabpanel" class="tab-pane" id="second">
+                    @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+                   
+                </div>
+            </div>
         }
 
 
