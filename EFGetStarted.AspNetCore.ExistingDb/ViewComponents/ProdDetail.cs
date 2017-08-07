@@ -4,34 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MillData.Models;
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MillData.ViewComponents
 {
-
-    public class MillDetail : ViewComponent
+    public class ProdDetail : ViewComponent
     {
         private readonly MillDataContext db;
 
-        public MillDetail(MillDataContext context)
+        public ProdDetail(MillDataContext context)
         {
             db = context;
         }
-
         public async Task<IViewComponentResult> InvokeAsync(
         int id)
         {
             var items = await GetProdData(id);
             return View(items);
-        }
-        private Task<List<MillInformation>> GetItems(int id)
-        {
-
-
-            var result = db.MillInformation.Where(x => x.MillId == id).ToListAsync();
-
-            
-
-            return result;
         }
         public async Task<List<ProductionData>> GetProdDataWrapper(int? id)
         {
