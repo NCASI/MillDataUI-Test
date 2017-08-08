@@ -18,22 +18,28 @@
         {
             <div class="leftdiv">
                 <dl>
-                    @{ 
-                        <dt>Production Category</dt>
+                    @{
+
                         if (@item.FkProdCat != null)
                         {
-                            <dd>@item.FkProdCat.ProdCatDescription</dd>
+                            <dt>Production Type</dt>
+                            <dd>@item.FkProdCat.ProdType</dd>
+
+                            <dt>Production Category</dt>
+                            if (@item.FkProdCat.ProdCatDescription != null)
+                            {<dd><b>@item.FkProdCat.Category</b> | @item.FkProdCat.ProdCatDescription</dd>}
+                            else
+                            { <dd><b>@item.FkProdCat.Category</b></dd>}
+
                         }
                         else
-                        {
-                            <dd><i>No production category available.</i></dd>
-                        }
+                        { <dd><i>No production category available.</i></dd> }
 
 
                         if (@item.Quantity != null)
                         {
                             <dt>Quantity</dt>
-                            <dd>@item.Quantity @item.Units</dd>
+                            <dd>@String.Format("{0:n}", item.Quantity)  @item.Units</dd>
                         }
                     
                         <dt>Source</dt>
@@ -43,13 +49,11 @@
                             <dd>@item.SourceYear</dd>
                         }
                         else
-                        {
-                            <dd><i>No source available.</i></dd>
-                        }
+                        { <dd><i>No source available.</i></dd> }
                    
                         <dt>Comments</dt>
                         <dd>@item.Comments</dd>
                     }   
                 </dl>
             </div>
-                }
+        }
