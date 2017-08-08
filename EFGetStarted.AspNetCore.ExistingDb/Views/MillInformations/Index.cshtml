@@ -98,8 +98,15 @@
     #detailnav{
         width:10%;
         float:left;
+        font-size:1vw;
     }
 
+    #notif{
+        text-align:center;
+        vertical-align: central;
+        font-size:2vw;
+        font-weight:bold;
+    }
 </style>
 
 <div class="form">
@@ -263,7 +270,7 @@
         <li role="presentation" id="sidebutton" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
         <li role="presentation" id="sidebutton"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
     </ul>
-
+    
     
 
     <div class="detail">
@@ -285,7 +292,12 @@
 
                 </div>
             </div>
-        }
+            }
+            else
+            {
+                <div id="notif">Please choose a mill from the list above to see details.</div>
+
+            }
     }
 </div>
 </div>
