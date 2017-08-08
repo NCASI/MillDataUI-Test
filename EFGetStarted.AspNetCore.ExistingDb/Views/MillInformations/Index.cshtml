@@ -1,6 +1,10 @@
 @model IEnumerable<MillData.Models.MillInformation>
 @using MillData.ViewComponents
 @using System.Net.Http
+@*@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")*@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
+<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
 @{
 
     ViewData["Title"] = "Index";
@@ -114,17 +118,20 @@
     @using (Html.BeginForm())
     {
         <p>
-            Search Mill ID:<span id="searchbox"> @Html.TextBox("IDSearchString")</span>
-            <input type="submit" value="Search" />
+            Search Mill ID:<span> @Html.TextBox("IDSearchString", "", new { @id = "searchbox", @onchange="checksearch();" })</span>
+            <input type="submit" class="millIDsearch" value="Search"/>
             <script>
-                var searchterm = document.getElementById("searchbox").lastChild.attributes[3].value;
-                if (searchterm != "") {
-                    if (isNaN(searchterm)) {
-                        alert("Error: Please enter a numerical Mill ID.");
-                    }
+                function checksearch() {
+                    var searchterm = document.getElementById("searchbox").value;
                     console.log(searchterm, isNaN(searchterm));
+                    if (searchterm != "") {
+                        if (isNaN(searchterm)) {
+                            $.notify("Error: Please enter a numerical Mill ID.", "error");
+                            //alert("Error: Please enter a numerical Mill ID.");
+                        }
+                        console.log(searchterm, isNaN(searchterm));
+                    }
                 }
-
 
             </script>
         </p>

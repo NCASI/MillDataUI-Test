@@ -2,6 +2,9 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "jQuery/1.8.0": {
+        "type": "package"
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -1490,6 +1493,12 @@
         },
         "runtime": {
           "lib/netstandard1.0/Microsoft.Extensions.WebEncoders.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.8.0"
         }
       },
       "Microsoft.Net.Http.Headers/1.1.2": {
@@ -4143,6 +4152,22 @@
     }
   },
   "libraries": {
+    "jQuery/1.8.0": {
+      "sha512": "laDFQRJrIRHT0Z0GVYklMt3bE0iu0MZFJwHwg21kt3SHb7Bj8TdNiM3K+ZdK1DzB8ZxKy8z7NkJvwMas+dmHBw==",
+      "type": "package",
+      "path": "jquery/1.8.0",
+      "files": [
+        "Content/Scripts/jquery-1.8.0-vsdoc.js",
+        "Content/Scripts/jquery-1.8.0.js",
+        "Content/Scripts/jquery-1.8.0.min.js",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-1.8.0.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.1.8.0.nupkg.sha512",
+        "jquery.nuspec"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -5378,6 +5403,17 @@
         "lib/netstandard1.0/Microsoft.Extensions.WebEncoders.xml",
         "microsoft.extensions.webencoders.1.1.2.nupkg.sha512",
         "microsoft.extensions.webencoders.nuspec"
+      ]
+    },
+    "Microsoft.jQuery.Unobtrusive.Ajax/3.2.3": {
+      "sha512": "bp8G1m66xaNE9RLm58qk7eXNDlH/yUBc/Dt8dMof/t0hBN3JpUQpPF7pavEVAauPCmcvM90pTrATG8nXbCi9yw==",
+      "type": "package",
+      "path": "microsoft.jquery.unobtrusive.ajax/3.2.3",
+      "files": [
+        "Content/Scripts/jquery.unobtrusive-ajax.js",
+        "Content/Scripts/jquery.unobtrusive-ajax.min.js",
+        "microsoft.jquery.unobtrusive.ajax.3.2.3.nupkg.sha512",
+        "microsoft.jquery.unobtrusive.ajax.nuspec"
       ]
     },
     "Microsoft.Net.Http.Headers/1.1.2": {
@@ -10744,7 +10780,8 @@
       "Microsoft.Extensions.Logging.Debug >= 1.1.2",
       "Microsoft.NETCore.App >= 1.1.2",
       "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.2",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.1"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.1",
+      "Microsoft.jQuery.Unobtrusive.Ajax >= 3.2.3"
     ]
   },
   "packageFolders": {
@@ -10781,6 +10818,10 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "1.1.1"
+          },
+          "Microsoft.jQuery.Unobtrusive.Ajax": {
+            "target": "Package",
+            "version": "3.2.3"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
