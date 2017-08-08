@@ -118,21 +118,19 @@
     @using (Html.BeginForm())
     {
         <p>
-            Search Mill ID:<span> @Html.TextBox("IDSearchString", "", new { @id = "searchbox", @onchange="checksearch();" })</span>
-            <input type="submit" class="millIDsearch" value="Search"/>
+            Search Mill ID:<span> @Html.TextBox("IDSearchString", "", new { @id = "searchbox" })</span>
+            <input type="submit" class="millIDsearch" value="Search" onclick="return checksearch()"/>
             <script>
                 function checksearch() {
                     var searchterm = document.getElementById("searchbox").value;
                     console.log(searchterm, isNaN(searchterm));
                     if (searchterm != "") {
                         if (isNaN(searchterm)) {
-                            $.notify("Error: Please enter a numerical Mill ID.", "error");
-                            //alert("Error: Please enter a numerical Mill ID.");
+                            alert("Error: Please enter a numerical Mill ID.");
+                            return false;   
                         }
-                        console.log(searchterm, isNaN(searchterm));
                     }
                 }
-
             </script>
         </p>
     }
