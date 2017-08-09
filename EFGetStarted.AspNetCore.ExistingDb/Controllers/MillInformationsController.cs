@@ -27,10 +27,10 @@ namespace MillData.Controllers
          *  -IDSearchString: value to search Mill ID by.
          *  
          * INPUT:
-         *  Uses the a context of type MillDataContext (see MillDataContext.cs).
+         *      Uses the a context of type MillDataContext (see MillDataContext.cs).
          * 
          * OUTPUT:
-         *  Returns a View of mill information results.
+         *      Returns a View of mill information results.
          *  
          *  ************************************************************************/
         public async Task<IActionResult> Index(string sortOrder, string IDSearchString, int? id)

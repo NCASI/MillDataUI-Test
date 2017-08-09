@@ -121,6 +121,7 @@
             Search Mill ID:<span> @Html.TextBox("IDSearchString", "", new { @id = "searchbox" })</span>
             <input type="submit" class="millIDsearch" value="Search" onclick="return checksearch()"/>
             <script>
+                //Handles input validation for the Mill ID search (numeric input only)
                 function checksearch() {
                     var searchterm = document.getElementById("searchbox").value;
                     console.log(searchterm, isNaN(searchterm));
@@ -279,30 +280,29 @@
     
 
     <div class="detail">
-        @{string path = Context.Request.Path.ToString();
-        if (path != "/")
-        {
-            var split = path.Split('/');
 
-            int chosenid = Int32.Parse(split[3]);
+        @{
+            //Gets Mill ID from path
+            string path = Context.Request.Path.ToString();
+            if (path != "/")
+            {
+                var split = path.Split('/');
 
-            //@await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="first">
-                    @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+                int chosenid = Int32.Parse(split[3]);
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="first">
+                        @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="second">
+                        @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="second">
-                    @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
-
-                </div>
-            </div>
             }
             else
-            {
-                <div id="notif">Please choose a mill from the list above to see details.</div>
-
-            }
+            { <div id="notif">Please choose a mill from the list above to see details.</div> }
     }
 </div>
 </div>
