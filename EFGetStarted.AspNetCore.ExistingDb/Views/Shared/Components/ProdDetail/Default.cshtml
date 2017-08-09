@@ -1,5 +1,13 @@
 ﻿@model IEnumerable <MillData.Models.ProductionData>
-<h3>Production Data: Mill @Model.First().FkMillKey</h3>
+
+@{
+    if (Model.Any())
+    { <h3>Production Data: Mill @Model.First().FkMillKey</h3> }
+    else
+    { <div id="notif">No production data available.</div> }
+}
+
+
 <style>
     .leftdiv, .middiv, .rightdiv {
         float: left;
