@@ -10,6 +10,14 @@ using Microsoft.Extensions.Logging;
 using MillData.Models;
 using Microsoft.EntityFrameworkCore;
 
+/****************************************************************************
+* CLASS: MillSearchLogic
+* This class handles application-wide search logic, such as
+* the getMillKeyFromId query.
+* 
+* METHODS: 
+*      getMillKeyFromId: Gets a MillKey from a MillID 
+* ***************************************************************************/
 namespace MillData.Models
 {
     public class MillSearchLogic
@@ -22,15 +30,15 @@ namespace MillData.Models
         }
 
         //Gets the Mill Key corresponding to that Mill ID
-        public int? getMillKey(int? id)
+        public int? getMillKeyFromId(int? id)
         {
             var results = db.MillInformation.Where(m => m.MillId == id)
                             .Select(u => new { key = u.PkMillKey }).SingleOrDefault();
 
             if (results != null)
-            { return results.key; }
+                 return results.key;
             else
-            { return 0; }
+                return 0;
           
         }
     }
