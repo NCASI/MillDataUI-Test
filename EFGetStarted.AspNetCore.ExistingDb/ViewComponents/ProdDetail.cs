@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MillData.Models;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
+using System;
 
 namespace MillData.ViewComponents
 {
@@ -18,8 +20,17 @@ namespace MillData.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(
         int id)
         {
-            var items = await GetProdData(id);
-            return View(items);
+            //Gets mill key corresponding to the id
+            MillSearchLogic keysearch = new MillSearchLogic(db);
+            int? key = keysearch.getMillKey(id);
+            if (key > 0)
+            {
+                var items = await GetProdData(key);
+                return View(items);
+            }
+            else
+                return Content("");
+            
         }
 
         /****************************************************************************
@@ -35,23 +46,16 @@ namespace MillData.ViewComponents
         public Task<List<ProductionData>> GetProdData(int? id)
         {
             
-            int? key = getMillKey(id);
 
-            //Queries the database to get data
-            var prodData = db.ProductionData
-                .Include(m => m.FkProdCat)
-                .Include(m => m.FkSource)
-                .Where(m => m.FkMillKey == key);
-
-            return prodData.ToListAsync();
+           
+                //Queries the database to get data
+                var prodData = db.ProductionData
+                    .Include(m => m.FkProdCat)
+                    .Include(m => m.FkSource)
+                    .Where(m => m.FkMillKey == id);
+                return prodData.ToListAsync(); 
         }
 
-        private int? getMillKey(int? id)
-        {
-            var results = db.MillInformation.Where(m => m.MillId == id)
-                            .Select(u => new { key = u.PkMillKey }).Single();
-            int key = results.key;
-            return key;
-        }
+        
     }
 }

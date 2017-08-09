@@ -224,12 +224,5 @@ namespace MillData.Controllers
         {
             return _context.MillInformation.Any(e => e.PkMillKey == id);
         }
-
-        public ActionResult SearchMillID(MillSearchModel searchModel)
-        {
-            var mill = new MillSearchLogic();
-            var resultmodel = mill.SearchMill(searchModel);
-            return View(resultmodel);
-        }
     }
 }

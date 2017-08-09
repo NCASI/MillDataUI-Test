@@ -14,25 +14,24 @@ namespace MillData.Models
 {
     public class MillSearchLogic
     {
-        private MillDataContext MillContext;
-        private DbContextOptions<MillDataContext> options;
+        private readonly MillDataContext db;
 
-        public MillSearchLogic()
+        public MillSearchLogic(MillDataContext context)
         {
-            MillContext = new MillDataContext(options);
+            db = context;
         }
 
-        public IQueryable<MillInformation> SearchMill(MillSearchModel searchModel)
+        //Gets the Mill Key corresponding to that Mill ID
+        public int? getMillKey(int? id)
         {
-            var result = MillContext.MillInformation.AsQueryable();
+            var results = db.MillInformation.Where(m => m.MillId == id)
+                            .Select(u => new { key = u.PkMillKey }).SingleOrDefault();
 
-            if (searchModel != null)
-            {
-                result = result.Where(x => x.MillId == searchModel.MillId);
-            }
-
-
-            return result;
+            if (results != null)
+            { return results.key; }
+            else
+            { return 0; }
+          
         }
     }
 }

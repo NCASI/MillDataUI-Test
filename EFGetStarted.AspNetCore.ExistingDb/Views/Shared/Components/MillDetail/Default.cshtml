@@ -1,5 +1,5 @@
 @model IEnumerable <MillData.Models.MillInformation>
-<h3>Mill Detail</h3>
+
 <style>
     .leftdiv, .middiv, .rightdiv{
         float:left;
@@ -10,9 +10,21 @@
     dd{
         margin-bottom:1%;
     }
-   
 
+    #notif {
+        text-align: center;
+        vertical-align: central;
+        font-size: 2vw;
+        font-weight: bold;
+    }
 </style>
+@{ 
+    if (Model.Any())
+    { <h3>Mill Detail</h3> }
+    else
+    { <div id="notif">Error: No such mill.</div> }
+}
+
 <div class="leftdiv">
     <dl>
         @foreach (var item in Model)

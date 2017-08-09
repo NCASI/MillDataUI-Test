@@ -14,46 +14,46 @@
 </style>
         
         
-        @foreach (var item in Model)
-        {
-            <div class="leftdiv">
-                <dl>
-                    @{
+@foreach (var item in Model)
+{
+    <div class="leftdiv">
+        <dl>
+            @{
 
-                        if (@item.FkProdCat != null)
-                        {
-                            <dt>Production Type</dt>
-                            <dd>@item.FkProdCat.ProdType</dd>
+                if (@item.FkProdCat != null)
+                {
+                    <dt>Production Type</dt>
+                    <dd>@item.FkProdCat.ProdType</dd>
 
-                            <dt>Production Category</dt>
-                            if (@item.FkProdCat.ProdCatDescription != null)
-                            {<dd><b>@item.FkProdCat.Category</b> | @item.FkProdCat.ProdCatDescription</dd>}
-                            else
-                            { <dd><b>@item.FkProdCat.Category</b></dd>}
+                    <dt>Production Category</dt>
+                    if (@item.FkProdCat.ProdCatDescription != null)
+                    {<dd><b>@item.FkProdCat.Category</b> | @item.FkProdCat.ProdCatDescription</dd>}
+                    else
+                    { <dd><b>@item.FkProdCat.Category</b></dd>}
 
-                        }
-                        else
-                        { <dd><i>No production category available.</i></dd> }
+                }
+                else
+                { <dd><i>No production category available.</i></dd> }
 
 
-                        if (@item.Quantity != null)
-                        {
-                            <dt>Quantity</dt>
-                            <dd>@String.Format("{0:n}", item.Quantity)  @item.Units</dd>
-                        }
+                if (@item.Quantity != null)
+                {
+                    <dt>Quantity</dt>
+                    <dd>@String.Format("{0:n}", item.Quantity)  @item.Units</dd>
+                }
                     
-                        <dt>Source</dt>
-                        if (@item.FkSource != null)
-                        {
-                            <dd>@item.FkSource.DataSource</dd>
-                            <dd>@item.SourceYear</dd>
-                        }
-                        else
-                        { <dd><i>No source available.</i></dd> }
+                <dt>Source</dt>
+                if (@item.FkSource != null)
+                {
+                    <dd>@item.FkSource.DataSource</dd>
+                    <dd>@item.SourceYear</dd>
+                }
+                else
+                { <dd><i>No source available.</i></dd> }
                    
-                        <dt>Comments</dt>
-                        <dd>@item.Comments</dd>
-                    }   
-                </dl>
-            </div>
-        }
+                <dt>Comments</dt>
+                <dd>@item.Comments</dd>
+            }   
+        </dl>
+    </div>
+}
