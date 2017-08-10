@@ -284,13 +284,16 @@
         @{
             //Gets Mill ID from path
             string path = Context.Request.Path.ToString();
+
+            //If path != '/', that is a mill ID is chosen for detail,
+            //display details. Else display error
             if (path != "/")
             {
                 var split = path.Split('/');
 
                 int chosenid = Int32.Parse(split[3]);
-
-                <!-- Tab panes -->
+                
+                //Tab panes
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="first">
                         @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })

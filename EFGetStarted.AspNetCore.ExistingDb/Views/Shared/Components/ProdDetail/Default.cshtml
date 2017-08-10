@@ -1,6 +1,7 @@
 ﻿@model IEnumerable <MillData.Models.ProductionData>
 
 @{
+    //if no data available, show error
     if (Model.Any())
     { <h3>Production Data: Mill @Model.First().FkMillKey</h3> }
     else
@@ -24,15 +25,18 @@
         
 @foreach (var item in Model)
 {
+    //for every item, create a separate div
     <div class="leftdiv">
         <dl>
             @{
-
+                //Handle prodcat null
                 if (@item.FkProdCat != null)
                 {
+                    //Production Type
                     <dt>Production Type</dt>
                     <dd>@item.FkProdCat.ProdType</dd>
 
+                    //Production category & description
                     <dt>Production Category</dt>
                     if (@item.FkProdCat.ProdCatDescription != null)
                     {<dd><b>@item.FkProdCat.Category</b> | @item.FkProdCat.ProdCatDescription</dd>}
@@ -43,13 +47,14 @@
                 else
                 { <dd><i>No production category available.</i></dd> }
 
-
+                //Quantity
                 if (@item.Quantity != null)
                 {
                     <dt>Quantity</dt>
                     <dd>@String.Format("{0:n}", item.Quantity)  @item.Units</dd>
                 }
-                    
+                
+                //Source
                 <dt>Source</dt>
                 if (@item.FkSource != null)
                 {
@@ -59,6 +64,7 @@
                 else
                 { <dd><i>No source available.</i></dd> }
                    
+                //Comments
                 <dt>Comments</dt>
                 <dd>@item.Comments</dd>
             }   
