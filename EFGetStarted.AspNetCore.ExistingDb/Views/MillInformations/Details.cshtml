@@ -39,19 +39,27 @@
         </dt>
         <dd>
            @{
+               //Get lat and long from model
                string latval = Model.Latitude;
                string longval = Model.Longitude;
+
+               //If the db actually has valid lat/long values, proceed
                if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
                    String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
                {
 
-
+                   //Trim the trailing quote 
                    latval = latval.Trim('"');
-
                    longval = longval.Trim('"');
+
+                   //Replace errant quotes with a single " for seconds
                    latval = latval.Replace("\"\"", "\"");
                    longval = longval.Replace("\"\"", "\"");
+
+                   //Combine into one string
                    string coordinate = latval + ", " + longval;
+
+                   //Append to hyperlink and display
                 <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
                     @Html.DisplayFor(modelItem => coordinate)
                 </a>
@@ -165,7 +173,10 @@
         </dt>
         <dd>
          @{
+             //Get website from model
              string website = Model.Website;
+
+             //if website is not valid, set to empty
              if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
              { website = ""; }
         }
@@ -177,6 +188,7 @@
         </dt>
         <dd>
             @{
+                //if comment string is NULL set to empty
                 string comstr = Model.Comments;
                 if (String.Compare(comstr, "NULL") == 0)
                 { comstr = ""; }
@@ -194,6 +206,7 @@
         </dt>
         <dd>
            @{ 
+                //if date is not null, set to MM/dd/yyy format and display
                if (Model.StatusDate != null && Model.StatusDate.Value != null)
                {
                    string date = Model.StatusDate.Value.ToString("MM/dd/yyyy");

@@ -58,6 +58,9 @@ namespace MillData
 
             app.UseMvc(routes =>
             {
+                //Default route is MillInformations
+                //Default action is index but no default mill
+                //This shows all mills
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=MillInformations}/{action=Index}/{id?}");
