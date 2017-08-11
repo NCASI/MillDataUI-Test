@@ -29,6 +29,7 @@
         /*font-size: 12px;*/
         padding: 5px;
     }
+    
 
     thead {
         background-color: white;
@@ -63,41 +64,37 @@
                              if (@item.FkProdCat.ProdCatDescription != null)
                              {
                                 <td>
-                                    @item.FkProdCat.Category &nbsp;<i class="icon-question-sign" data-toggle="tooltip"
-                                        title="@item.FkProdCat.ProdCatDescription" data-placement="right"></i>
+                                    @item.FkProdCat.Category &nbsp;<a><i class="icon-question-sign" data-toggle="tooltip"
+                                        title="@item.FkProdCat.ProdCatDescription" data-placement="right"></i></a>
                                 </td>
                              }
                              else
                              { <td>@item.FkProdCat.Category</td>}
 
-                }
-                else
-                { <td><i>No production category available.</i></td> }
+                        }
+                        else
+                        { <td><i>No production category available.</i></td> }
 
-                    //Quantity
-                    if (@item.Quantity != null)
-                    {
-                             
-                                 <td>@String.Format("{0:n}", item.Quantity)  @item.Units</td>
-                             }
+                        //Quantity
+                        if (@item.Quantity != null)
+                        {
+                            <td>@String.Format("{0:n}", item.Quantity)  @item.Units</td>
+                        }
 
-                             //Source
-            
-                             if (@item.FkSource != null)
-                             {
-                                 <td>@item.FkSource.DataSource</td>
-                                 <td>@item.SourceYear</td>
-                             }
-                             else
-                             {
-                                 <td><i>No source available.</i></td> }
+                        //Source
+                        if (@item.FkSource != null)
+                        {
+                            <td>@item.FkSource.DataSource</td>
+                             if (@item.SourceYear != null)
+                                { <td>@item.SourceYear</td> }
+                        }
+                        else
+                        { <td><i>No source available.</i></td> }
 
-                             //Comments
-            
-                             <td>@item.Comments</td>
+                        //Comments
+                        <td>@item.Comments</td>
                      }
-
-             </tr>
-                         }
+                </tr>
+            }
      </tbody>
 </table>
