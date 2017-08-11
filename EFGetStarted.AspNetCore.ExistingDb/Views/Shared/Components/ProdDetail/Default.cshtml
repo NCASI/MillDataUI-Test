@@ -10,64 +10,94 @@
 
 
 <style>
-    .leftdiv, .middiv, .rightdiv {
+    .leftdiv, .mitdiv, .rightdiv {
         float: left;
         width: 200px;
         margin-left: 5%;
         margin-right: 5%;
     }
 
-    dd {
-        margin-bottom: 3%;
+    table{
+        width:100%;
+    }
+    tbody tr:hover {
+        background-color: skyblue;
+        border-top: solid;
+    }
+
+    td {
+        /*font-size: 12px;*/
+        padding: 5px;
+    }
+
+    thead {
+        background-color: white;
+        border-bottom: thin solid;
     }
 </style>
         
-        
-@foreach (var item in Model)
-{
-    //for every item, create a separate div
-    <div class="leftdiv">
-        <dl>
-            @{
-                //Handle prodcat null
-                if (@item.FkProdCat != null)
-                {
-                    //Production Type
-                    <dt>Production Type</dt>
-                    <dd>@item.FkProdCat.ProdType</dd>
+ <table>
+    <thead>
+        <tr>
+            <th>Production Type</th>
+            <th>Production Category</th>
+            <th>Quantity</th>
+            <th>Source</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in Model)
+         {
+             //for every item, create a separate div
+             <tr class="subdatasheet">
+                     @{
+                         //Handle prodcat null
+                         if (@item.FkProdCat != null)
+                         {
+                             //Production Type
+                             <td>@item.FkProdCat.ProdType</td>
 
-                    //Production category & description
-                    <dt>Production Category</dt>
-                    if (@item.FkProdCat.ProdCatDescription != null)
-                    {<dd><b>@item.FkProdCat.Category</b> | @item.FkProdCat.ProdCatDescription</dd>}
-                    else
-                    { <dd><b>@item.FkProdCat.Category</b></dd>}
+                             //Production category & description
+
+                             if (@item.FkProdCat.ProdCatDescription != null)
+                             {
+                                <td>
+                                    @item.FkProdCat.Category &nbsp;<i class="icon-question-sign" data-toggle="tooltip"
+                                        title="@item.FkProdCat.ProdCatDescription" data-placement="right"></i>
+                                </td>
+                             }
+                             else
+                             { <td>@item.FkProdCat.Category</td>}
 
                 }
                 else
-                { <dd><i>No production category available.</i></dd> }
+                { <td><i>No production category available.</i></td> }
 
-                //Quantity
-                if (@item.Quantity != null)
-                {
-                    <dt>Quantity</dt>
-                    <dd>@String.Format("{0:n}", item.Quantity)  @item.Units</dd>
-                }
-                
-                //Source
-                <dt>Source</dt>
-                if (@item.FkSource != null)
-                {
-                    <dd>@item.FkSource.DataSource</dd>
-                    <dd>@item.SourceYear</dd>
-                }
-                else
-                { <dd><i>No source available.</i></dd> }
-                   
-                //Comments
-                <dt>Comments</dt>
-                <dd>@item.Comments</dd>
-            }   
-        </dl>
-    </div>
-}
+                    //Quantity
+                    if (@item.Quantity != null)
+                    {
+                             
+                                 <td>@String.Format("{0:n}", item.Quantity)  @item.Units</td>
+                             }
+
+                             //Source
+            
+                             if (@item.FkSource != null)
+                             {
+                                 <td>@item.FkSource.DataSource</td>
+                                 <td>@item.SourceYear</td>
+                             }
+                             else
+                             {
+                                 <td><i>No source available.</i></td> }
+
+                             //Comments
+            
+                             <td>@item.Comments</td>
+                     }
+
+             </tr>
+                         }
+     </tbody>
+</table>
