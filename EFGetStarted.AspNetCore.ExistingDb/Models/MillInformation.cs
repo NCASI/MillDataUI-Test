@@ -43,7 +43,7 @@ namespace MillData.Models
         [DisplayName("NA Benchmarking Category")]
         public string Naprodcat { get; set; }
 
-        [DisplayName("NCASI Product Cat 1")]
+        [DisplayName("ProdCat")]
         public string ProdCat1 { get; set; }
 
         [DisplayName("NCASI Product Cat 2")]

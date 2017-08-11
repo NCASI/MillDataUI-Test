@@ -59,28 +59,7 @@
         position: absolute;
         bottom: 20px;
     }
-
-    /*table thead tr {
-        display: block;
-
-    }
-    th, td{
-        max-width: 100px;
-        min-width: 100px;
-
-
-        padding-left: auto;
-        padding-right: auto;
-    }
-
-    table tbody {
-        display:block;
-        height: 200px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        word-break:unset;
-    }*/
-
+        
     .epasubcat {
         text-align: center;
     }
@@ -92,6 +71,9 @@
     td {
         font-size: 12px;
         padding: 5px;
+    }
+    thead{
+        background-color:white;
     }
 
     .clickable {
@@ -145,10 +127,11 @@
         <a asp-action="Create">Create New</a>
     </p>
 </div>
-<div class="datasheet">
+
+<div class="datasheet" id="datasheet">
     <table class="table">
         <thead>
-            <tr>
+            <tr class="tableheader">
                 <th></th>
                 <th></th>
                 <th>
@@ -186,20 +169,21 @@
                     @Html.DisplayNameFor(model => model.ShippingCountry)
                 </th>
               
-                <th>
+                @*<th>
                     @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = ViewBag.EPASort })
                   
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Naprodcat)
-                </th>
+                </th>*@
                 <th data-toggle="tooltip" title="Primary production category of mill." data-placement="right">
 
                     @Html.DisplayNameFor(model => model.ProdCat1)
                 </th>
-                <th data-toggle="tooltip" title="Secondary production category of mill." data-placement="right">
+                @*<th data-toggle="tooltip" title="Secondary production category of mill." data-placement="right">
                     @Html.DisplayNameFor(model => model.ProdCat2)
-                </th>
+                </th>*@
+                <th></th>
                 
             </tr>
         </thead>
@@ -252,18 +236,18 @@
                         @Html.DisplayFor(modelItem => item.ShippingCountry)
                     </td>
 
-                    <td class="epasubcat">
+                    @*<td class="epasubcat">
                         @Html.DisplayFor(modelItem => item.FkEpasubcat.Subcat)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Naprodcat)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.ProdCat1)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.ProdCat2)
-                    </td>
+                    </td>*@
                     <td>
 
 
@@ -274,7 +258,12 @@
         </tbody>
     </table>
 </div>
-    
+    <script>
+                document.getElementById("datasheet").addEventListener("scroll", function () {
+                    var translate = "translate(0," + this.scrollTop + "px)";
+                    this.querySelector("thead").style.transform = translate;
+                });
+</script>
 <div class="subform">
 
     <!-- Nav tabs -->
