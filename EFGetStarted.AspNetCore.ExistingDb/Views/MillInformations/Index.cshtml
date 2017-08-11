@@ -3,8 +3,6 @@
 @using System.Net.Http
 @*@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")*@
 <script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
-<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
 @{
 
     ViewData["Title"] = "Index";
@@ -23,6 +21,7 @@
         width: 90%;
         margin-left: 5%;
         margin-right: 5%;
+        
     }
 
     .datasheet {
@@ -90,6 +89,10 @@
         background-color: skyblue;
         border-top: solid;
     }
+    td {
+        font-size: 12px;
+        padding: 5px;
+    }
 
     .clickable {
         cursor: pointer;
@@ -146,9 +149,10 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
+                <th></th>
                 <th>
                     @Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
-                    @*@Html.DisplayNameFor(model => model.MillId)*@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FkMillType)
@@ -203,6 +207,8 @@
             @foreach (var item in Model.Take(100))
             {
                 <tr class="clickable" onclick="location.href = '@(Url.Action("Index", "MillInformations", new { id = item.MillId }))'">
+                    <td><a asp-action="Details" asp-route-id="@item.PkMillKey"><i class="icon-zoom-in"></i></a></td>
+                    <td><a asp-action="Edit" asp-route-id="@item.PkMillKey"><i class="icon-edit"></i></a></td>
                     <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
                         @Html.DisplayFor(modelItem => item.MillId)
                     </td>
@@ -220,13 +226,13 @@
                             }
                         }
                     </td>
-                    
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Company)
                     </td>
-              
 
-                    
+
+
                     <td>
                         @Html.DisplayFor(modelItem => item.ShippingAddress)
                     </td>
@@ -245,7 +251,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ShippingCountry)
                     </td>
-                    
+
                     <td class="epasubcat">
                         @Html.DisplayFor(modelItem => item.FkEpasubcat.Subcat)
                     </td>
@@ -259,12 +265,12 @@
                         @Html.DisplayFor(modelItem => item.ProdCat2)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.PkMillKey">Edit</a><br />
-                        <a asp-action="Details" asp-route-id="@item.PkMillKey">Details</a><br />
+
+
                         <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a><br />
                     </td>
                 </tr>
-            }
+                            }
         </tbody>
     </table>
 </div>
