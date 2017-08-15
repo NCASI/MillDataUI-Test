@@ -1,8 +1,7 @@
 @model IEnumerable<MillData.Models.MillInformation>
 @using MillData.ViewComponents
 @using System.Net.Http
-@*@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")*@
-<script src="~/lib/jquery/dist/jquery.js"></script>
+
 @{
 
     ViewData["Title"] = "Index";
@@ -64,7 +63,7 @@
         text-align: center;
     }
 
-    tbody tr:hover {
+    #datasheet tr:hover {
         background-color: skyblue;
         border-top: solid;
     }
@@ -127,6 +126,32 @@
         <a asp-action="Create">Create New</a>
     </p>
 </div>
+<script type="text/javascript">
+                $(".clickable").click(function () {
+                    alert("clicked");
+                    var serviceURL = 'http://localhost:56860/MillInformation/Index';
+
+                    $.ajax({
+                        type: "GET",
+                        url: serviceURL,
+                        data: {
+                            id: "@ViewBag.MillId"
+                        },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: successFunc,
+                        error: errorFunc
+                    });
+
+                    function successFunc(data, status) {
+                        alert(data);
+                    }
+
+                    function errorFunc() {
+                        alert('error');
+                    }
+                });
+</script>
 
 <div class="datasheet" id="datasheet">
     <table class="table">
@@ -187,10 +212,14 @@
                 
             </tr>
         </thead>
+
         <tbody>
             @foreach (var item in Model.Take(100))
             {
+                
+
                 <tr class="clickable" onclick="location.href = '@(Url.Action("Index", "MillInformations", new { id = item.MillId }))'">
+
                     <td><a asp-action="Details" asp-route-id="@item.PkMillKey"><i class="icon-zoom-in"></i></a></td>
                     <td><a asp-action="Edit" asp-route-id="@item.PkMillKey"><i class="icon-edit"></i></a></td>
                     <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">

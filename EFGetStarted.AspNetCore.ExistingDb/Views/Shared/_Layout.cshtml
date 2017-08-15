@@ -43,13 +43,7 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr class="footerline"/>
-        <footer class="footer">
-            <p>&copy; 2017 - NCASI, Inc.</p>
-        </footer>
-    </div>
+    
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -73,5 +67,13 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr class="footerline" />
+        <footer class="footer">
+            <p>&copy; 2017 - NCASI, Inc.</p>
+        </footer>
+    </div>
 </body>
 </html>
