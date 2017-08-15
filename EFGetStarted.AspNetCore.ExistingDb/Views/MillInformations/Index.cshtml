@@ -126,8 +126,8 @@
         <a asp-action="Create">Create New</a>
     </p>
 </div>
-<script type="text/javascript">
-                $(".clickable").click(function () {
+<script>
+                function clickfn(id) {
                     alert("clicked");
                     var serviceURL = 'http://localhost:56860/MillInformation/Index';
 
@@ -135,7 +135,7 @@
                         type: "GET",
                         url: serviceURL,
                         data: {
-                            id: "@ViewBag.MillId"
+                            id: "2"
                         },
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -150,7 +150,7 @@
                     function errorFunc() {
                         alert('error');
                     }
-                });
+                }
 </script>
 
 <div class="datasheet" id="datasheet">
@@ -218,11 +218,11 @@
             {
                 
 
-                <tr class="clickable" onclick="location.href = '@(Url.Action("Index", "MillInformations", new { id = item.MillId }))'">
+                <tr class="clickable" onclick="return clickfn(@item.MillId)">
 
                     <td><a asp-action="Details" asp-route-id="@item.PkMillKey"><i class="icon-zoom-in"></i></a></td>
                     <td><a asp-action="Edit" asp-route-id="@item.PkMillKey"><i class="icon-edit"></i></a></td>
-                    <td class="clickable" onclick="location.href = '@(Url.Action("Details", "MillInformations", new { id = item.PkMillKey }))'">
+                    <td>
                         @Html.DisplayFor(modelItem => item.MillId)
                     </td>
                     <td>
