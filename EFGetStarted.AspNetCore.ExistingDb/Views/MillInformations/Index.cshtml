@@ -129,14 +129,14 @@
 </div>
 <script>
                 function clickfn(id) {
-                    document.cookie = "id="+id;
-                   
+                    document.cookie = "id=" + id;
+
                     window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
                     $("#detail").load(location.href + " #detail");
-                    setTimeout(function () {
+                    $("#detail").ready(function() {
                         $("#sidebutton1").addClass("active");
-                        $("#sidebutton2").removeClass("active"); 
-                    }, 1000);
+                        $("#sidebutton2").removeClass("active");
+                    });
                 }
 </script>
 
