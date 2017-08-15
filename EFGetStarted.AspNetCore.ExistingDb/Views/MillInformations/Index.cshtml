@@ -129,13 +129,13 @@
 <script>
                 function clickfn(id) {
                     alert("clicked");
-                    var serviceURL = 'http://localhost:56860/MillInformation/Index';
+                    var serviceURL = '/MillInformations/Index';
 
                     $.ajax({
-                        type: "GET",
+                        type: "POST",
                         url: serviceURL,
                         data: {
-                            id: "2"
+                            id: 2
                         },
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -313,17 +313,23 @@
             //display details. Else display error
             if (path != "/")
             {
+                int chosenid = 1;
                 var split = path.Split('/');
+                @*<div>path: @path;</div>
+                <div>split 1: @split[1]</div>
+                <div>2: @split[2]</div>
+                <div>3: @split[3]</div>*@
 
-                int chosenid = Int32.Parse(split[3]);
-                
+                if (!(split[3] == "" || split[3] == null))
+                    { chosenid = Int32.Parse(split[3]); }
+
                 //Tab panes
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="first">
-                        @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+                        @await Component.InvokeAsync(nameof(MillDetail), new { id = 1 })
                     </div>
                     <div role="tabpanel" class="tab-pane" id="second">
-                        @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+                        @await Component.InvokeAsync(nameof(ProdDetail), new { id = 1 })
                     </div>
                 </div>
             }
