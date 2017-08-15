@@ -13,7 +13,6 @@ namespace MillData.Controllers
     public class MillInformationsController : Controller
     {
         private readonly MillDataContext _context;
-
         public MillInformationsController(MillDataContext context)
         {
             _context = context;    
@@ -229,6 +228,24 @@ namespace MillData.Controllers
         {
             _context.Dispose();
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public IActionResult GetAjax(string id)
+        {
+            int chosenid = Int32.Parse(id);
+            var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat);
+            var results = millDataContext.ToList();
+            if (id != null)
+            {
+                 results = results.Where(s => s.MillId >= chosenid).ToList();
+                return View(results);
+
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

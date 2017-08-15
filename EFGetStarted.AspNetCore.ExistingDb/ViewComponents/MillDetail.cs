@@ -42,5 +42,7 @@ namespace MillData.ViewComponents
             var result = db.MillInformation.Where(x => x.MillId == id).ToListAsync();
             return result;
         }
+
+        
     }
 }

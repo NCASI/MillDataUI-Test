@@ -5,6 +5,7 @@
 @{
 
     ViewData["Title"] = "Index";
+    string tid;
 }
 <style>
     html, body {
@@ -128,28 +129,21 @@
 </div>
 <script>
                 function clickfn(id) {
-                    alert("clicked");
-                    var serviceURL = '/MillInformations/Index';
+                    document.cookie = "id="+id;
+                   
+                    window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
+                    $("#detail").load(location.href + " #detail");
+                    @*$.ajax({
+                        url: '@Url.Action("/MillInformations/Index/")',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (ratingAreaViewResult) {
 
-                    $.ajax({
-                        type: "POST",
-                        url: serviceURL,
-                        data: {
-                            id: 2
+                            alert("success");
                         },
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: successFunc,
-                        error: errorFunc
-                    });
+                        error: function (xhr) { alert("Something seems Wrong"); }
+                    });*@
 
-                    function successFunc(data, status) {
-                        alert(data);
-                    }
-
-                    function errorFunc() {
-                        alert('error');
-                    }
                 }
 </script>
 
@@ -303,7 +297,7 @@
     
     
 
-    <div class="detail">
+    <div class="detail" id="detail">
 
         @{
             //Gets Mill ID from path
@@ -311,27 +305,29 @@
 
             //If path != '/', that is a mill ID is chosen for detail,
             //display details. Else display error
-            if (path != "/")
+            if (path != "/" && path != "" && path != null)
             {
                 int chosenid = 1;
                 var split = path.Split('/');
-                @*<div>path: @path;</div>
-                <div>split 1: @split[1]</div>
+
+                @*<div>split 1: @split[1]</div>
                 <div>2: @split[2]</div>
                 <div>3: @split[3]</div>*@
 
-                if (!(split[3] == "" || split[3] == null))
+                    if (split.Length >2 && !(split[3] == "" || split[3] == null))
                     { chosenid = Int32.Parse(split[3]); }
 
-                //Tab panes
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="first">
-                        @await Component.InvokeAsync(nameof(MillDetail), new { id = 1 })
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="second">
-                        @await Component.InvokeAsync(nameof(ProdDetail), new { id = 1 })
-                    </div>
-                </div>
+
+                        //Tab panes
+                        <div class="tab-content">
+
+                            <div role="tabpanel" class="tab-pane active" id="first">
+                                @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="second">
+                                @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+                            </div>
+                        </div>
             }
             else
             { <div id="notif">Please choose a mill from the list above to see details.</div> }
