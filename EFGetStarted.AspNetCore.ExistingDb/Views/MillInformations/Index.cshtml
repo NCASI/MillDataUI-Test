@@ -100,10 +100,10 @@
 
 <div class="form">
     <h2>Mill Information</h2>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(FormMethod.Get))
     {
         <p>
-            Search Mill ID:<span> @Html.TextBox("IDSearchString", "", new { @id = "searchbox" })</span>
+            Search Mill ID:<span> @Html.TextBox("IDSearchString", ViewBag.CurrentFilter as string, new { @id = "searchbox" })</span>
             <input type="submit" class="millIDsearch" value="Search" onclick="return checksearch()"/>
             <script>
                 //Handles input validation for the Mill ID search (numeric input only)

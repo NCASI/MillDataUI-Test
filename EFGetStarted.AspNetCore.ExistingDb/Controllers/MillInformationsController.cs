@@ -224,5 +224,11 @@ namespace MillData.Controllers
         {
             return _context.MillInformation.Any(e => e.PkMillKey == id);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
