@@ -133,17 +133,10 @@
                    
                     window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
                     $("#detail").load(location.href + " #detail");
-                    @*$.ajax({
-                        url: '@Url.Action("/MillInformations/Index/")',
-                        type: 'POST',
-                        data: { id: id },
-                        success: function (ratingAreaViewResult) {
-
-                            alert("success");
-                        },
-                        error: function (xhr) { alert("Something seems Wrong"); }
-                    });*@
-
+                    setTimeout(function () {
+                        $("#sidebutton1").addClass("active");
+                        $("#sidebutton2").removeClass("active"); 
+                    }, 1000);
                 }
 </script>
 
@@ -291,8 +284,8 @@
 
     <!-- Nav tabs -->
     <ul class="nav nav-pills nav-stacked" role="tablist" id="detailnav">
-        <li role="presentation" id="sidebutton" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
-        <li role="presentation" id="sidebutton"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
+        <li role="presentation" id="sidebutton1" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
+        <li role="presentation" id="sidebutton2"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
     </ul>
     
     
