@@ -94,12 +94,15 @@
 		        <dt>Postal Address</dt>
                     if (item.PostalAddress != null)
                     {<dd> @item.PostalAddress @item.PostalAddress2</dd>}
-                    <dd>
-                        @item.PostalCity, @item.PostalState, @item.PostalPostcode<br />
-                        @item.PostalCountry
-                    </dd> 
-	        }
-            
+                    if (@item.PostalState != null && @item.PostalState != "")
+                    {
+                            <dd>
+                                @item.PostalCity @item.PostalState, @item.PostalPostcode<br />
+                            </dd>
+                    }
+                    @item.PostalCountry
+            }
+
             //EPA Region
             if (item.Eparegion != null)
             {<dt>EPA Region</dt>

@@ -199,7 +199,6 @@
                 
             </tr>
         </thead>
-
         <tbody>
             @foreach (var item in Model.Take(100))
             {
@@ -207,8 +206,8 @@
 
                 <tr class="clickable" onclick="return clickfn(@item.MillId)">
 
-                    <td><a asp-action="Details" asp-route-id="@item.PkMillKey"><i class="icon-zoom-in"></i></a></td>
-                    <td><a asp-action="Edit" asp-route-id="@item.PkMillKey"><i class="icon-edit"></i></a></td>
+                    <td><a asp-action="Details" asp-route-id="@item.MillId"><i class="icon-zoom-in"></i></a></td>
+                    <td><a asp-action="Edit" asp-route-id="@item.MillId"><i class="icon-edit"></i></a></td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MillId)
                     </td>

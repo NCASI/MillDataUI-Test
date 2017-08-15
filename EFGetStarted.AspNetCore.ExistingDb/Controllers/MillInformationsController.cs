@@ -98,7 +98,7 @@ namespace MillData.Controllers
             var millInformation = await _context.MillInformation
                 .Include(m => m.FkEpasubcat)
                 .Include(m => m.FkMillType)
-                .SingleOrDefaultAsync(m => m.PkMillKey == id);
+                .SingleOrDefaultAsync(m => m.MillId == id);
             if (millInformation == null)
             {
                 return NotFound();
@@ -158,7 +158,7 @@ namespace MillData.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PkMillKey,MillId,FkMillTypeId,Company,Latitude,Longitude,FkEpasubcatId,Naprodcat,ProdCat1,ProdCat2,ShippingAddress,ShippingAddress2,ShippingCity,ShippingState,ShippingPostcode,ShippingCountry,PostalAddress,PostalAddress2,PostalCity,PostalState,PostalPostcode,PostalCountry,Eparegion,Website,Comments,MillStatus,StatusDate")] MillInformation millInformation)
         {
-            if (id != millInformation.PkMillKey)
+            if (id != millInformation.MillId)
             {
                 return NotFound();
             }
@@ -172,7 +172,7 @@ namespace MillData.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MillInformationExists(millInformation.PkMillKey))
+                    if (!MillInformationExists(millInformation.MillId))
                     {
                         return NotFound();
                     }
@@ -199,7 +199,7 @@ namespace MillData.Controllers
             var millInformation = await _context.MillInformation
                 .Include(m => m.FkEpasubcat)
                 .Include(m => m.FkMillType)
-                .SingleOrDefaultAsync(m => m.PkMillKey == id);
+                .SingleOrDefaultAsync(m => m.MillId == id);
             if (millInformation == null)
             {
                 return NotFound();
