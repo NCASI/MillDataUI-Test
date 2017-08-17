@@ -128,10 +128,18 @@
     </p>
 </div>
 <script>
+    //This function handles the asynchronous delivery of detail data
+    //It is fired by an onclick event for each row in the master datasheet
     function clickfn(id) {
         document.cookie = "id=" + id;
+
+        //use JS (supported in HTML5) to change URL without reloading
         window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
+
+        //reload only the detail DOM of the page, forcing it to execute its code
         $("#detail").load(location.href + " #detail");
+
+        //if the production tab is active, change to mill detail tab
         $("#detail").ready(function() {
             $("#sidebutton1").addClass("active");
             $("#sidebutton2").removeClass("active");
@@ -288,7 +296,14 @@
     
 
     <div class="detail" id="detail">
-
+        @*
+        *************************************************************************
+        * This code executes whenever the detail DOM is loaded/reloaded
+        *   Gets the URL path from the browser
+        *   If the path specifies a mill ID at the end, gets that ID
+        *   Invokes the viewcomponents, passing mill ID in as an arg
+        *************************************************************************
+        *@
         @{
             //Gets Mill ID from path
             string path = Context.Request.Path.ToString();
