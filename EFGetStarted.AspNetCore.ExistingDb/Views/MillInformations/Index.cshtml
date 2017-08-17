@@ -128,16 +128,16 @@
     </p>
 </div>
 <script>
-                function clickfn(id) {
-                    document.cookie = "id=" + id;
+    function clickfn(id) {
+        document.cookie = "id=" + id;
 
-                    window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
-                    $("#detail").load(location.href + " #detail");
-                    $("#detail").ready(function() {
-                        $("#sidebutton1").addClass("active");
-                        $("#sidebutton2").removeClass("active");
-                    });
-                }
+        window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
+        $("#detail").load(location.href + " #detail");
+        $("#detail").ready(function() {
+            $("#sidebutton1").addClass("active");
+            $("#sidebutton2").removeClass("active");
+        });
+    }
 </script>
 
 <div class="datasheet" id="datasheet">
@@ -202,8 +202,6 @@
         <tbody>
             @foreach (var item in Model.Take(100))
             {
-                
-
                 <tr class="clickable" onclick="return clickfn(@item.MillId)">
 
                     <td><a asp-action="Details" asp-route-id="@item.MillId"><i class="icon-zoom-in"></i></a></td>
