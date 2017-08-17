@@ -5,7 +5,6 @@
 @{
 
     ViewData["Title"] = "Index";
-    string tid;
 }
 <style>
     html, body {
@@ -128,10 +127,12 @@
     </p>
 </div>
 <script>
-    //This function handles the asynchronous delivery of detail data
-    //It is fired by an onclick event for each row in the master datasheet
+    /***********************************************************************
+    * This function handles the asynchronous delivery of detail data
+    * It is fired by an onclick event for each row in the master datasheet
+    * For more detail on how that works, see the comment in #detail
+    ************************************************************************/
     function clickfn(id) {
-        document.cookie = "id=" + id;
 
         //use JS (supported in HTML5) to change URL without reloading
         window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
@@ -236,8 +237,6 @@
                         @Html.DisplayFor(modelItem => item.Company)
                     </td>
 
-
-
                     <td>
                         @Html.DisplayFor(modelItem => item.ShippingAddress)
                     </td>
@@ -314,10 +313,6 @@
             {
                 int chosenid = 1;
                 var split = path.Split('/');
-
-                @*<div>split 1: @split[1]</div>
-                <div>2: @split[2]</div>
-                <div>3: @split[3]</div>*@
 
                     if (split.Length >2 && !(split[3] == "" || split[3] == null))
                     { chosenid = Int32.Parse(split[3]); }
