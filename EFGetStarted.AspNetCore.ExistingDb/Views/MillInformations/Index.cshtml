@@ -130,7 +130,6 @@
 <script>
     function clickfn(id) {
         document.cookie = "id=" + id;
-
         window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
         $("#detail").load(location.href + " #detail");
         $("#detail").ready(function() {
@@ -202,6 +201,7 @@
         <tbody>
             @foreach (var item in Model.Take(100))
             {
+                //clickable rows for detail, modified for asynchronous delivery of detail data
                 <tr class="clickable" onclick="return clickfn(@item.MillId)">
 
                     <td><a asp-action="Details" asp-route-id="@item.MillId"><i class="icon-zoom-in"></i></a></td>
