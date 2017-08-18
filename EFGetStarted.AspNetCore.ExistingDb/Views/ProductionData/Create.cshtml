@@ -1,0 +1,71 @@
+@model MillData.Models.ProductionData
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>ProductionData</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="FkMillKey" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="FkMillKey" class ="form-control" asp-items="ViewBag.FkMillKey"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FkProdCatId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="FkProdCatId" class ="form-control" asp-items="ViewBag.FkProdCatId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Quantity" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Units" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Units" class="form-control" />
+                <span asp-validation-for="Units" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FkSourceId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="FkSourceId" class ="form-control" asp-items="ViewBag.FkSourceId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SourceYear" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SourceYear" class="form-control" />
+                <span asp-validation-for="SourceYear" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Comments" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
