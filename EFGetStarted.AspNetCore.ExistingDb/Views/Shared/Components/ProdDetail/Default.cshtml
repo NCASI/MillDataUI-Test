@@ -43,6 +43,7 @@
  <table>
     <thead>
         <tr>
+            <th width="auto;"></th>
             <th>Production Type</th>
             <th>Production Category</th>
             <th>Quantity</th>
@@ -56,7 +57,7 @@
              //for every item, create a separate div
              <tr class="subdatasheet">
                      @{
-                         <td> <a asp-action="ProductionData/Edit" asp-route-id="@item.PkProductionId"><i class="icon-edit"></i></a> </td>
+                         <td> <a href="~/ProductionData/Edit/@item.PkProductionId"><i class="icon-edit"></i> </a></td>
 
                          //Handle prodcat null
                          if (@item.FkProdCat != null)
