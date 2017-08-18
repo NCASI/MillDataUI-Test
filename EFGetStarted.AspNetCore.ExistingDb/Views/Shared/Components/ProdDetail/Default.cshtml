@@ -56,6 +56,8 @@
              //for every item, create a separate div
              <tr class="subdatasheet">
                      @{
+                         <td> <a asp-action="ProductionData/Edit" asp-route-id="@item.PkProductionId"><i class="icon-edit"></i></a> </td>
+
                          //Handle prodcat null
                          if (@item.FkProdCat != null)
                          {
