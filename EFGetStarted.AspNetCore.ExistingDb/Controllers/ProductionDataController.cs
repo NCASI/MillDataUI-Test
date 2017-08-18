@@ -87,8 +87,8 @@ namespace MillData.Controllers
             {
                 return NotFound();
             }
-            ViewData["FkMillKey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", productionData.FkMillKey);
-            ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "PkProdCatId", productionData.FkProdCatId);
+            ViewData["FkMillKey"] = new SelectList(_context.MillInformation, "PkMillKey", "MillId", productionData.FkMillKey);
+            ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "Category", productionData.FkProdCatId);
             ViewData["FkSourceId"] = new SelectList(_context.Source, "PkSourceId", "DataSource", productionData.FkSourceId);
             return View(productionData);
         }
@@ -125,8 +125,8 @@ namespace MillData.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["FkMillKey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", productionData.FkMillKey);
-            ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "PkProdCatId", productionData.FkProdCatId);
+            ViewData["FkMillKey"] = new SelectList(_context.MillInformation, "PkMillKey", "MillId", productionData.FkMillKey);
+            ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "Category", productionData.FkProdCatId);
             ViewData["FkSourceId"] = new SelectList(_context.Source, "PkSourceId", "DataSource", productionData.FkSourceId);
             return View(productionData);
         }
