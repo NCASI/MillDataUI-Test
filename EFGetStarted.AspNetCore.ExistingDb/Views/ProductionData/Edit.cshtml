@@ -70,6 +70,16 @@
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="#" onclick="return backtomillinfo()">Back to List</a>
+    <script>
+        function backtomillinfo()
+        {
+            var oldURL = document.referrer;
+            //alert(oldURL);
+            window.location = oldURL;
+            return oldURL;
+        }
+
+    </script>
 </div>
 
