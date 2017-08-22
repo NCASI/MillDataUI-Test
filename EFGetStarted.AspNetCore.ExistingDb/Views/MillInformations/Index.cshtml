@@ -138,10 +138,8 @@
         window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
 
         //reload only the detail DOM of the page, forcing it to execute its code
-        $("#detail").load(location.href + " #detail");
-
         //if the production tab is active, change to mill detail tab
-        $("#detail").ready(function() {
+        $("#detail").load(location.href + " #detail").ready(function () {
             $("#sidebutton1").addClass("active");
             $("#sidebutton2").removeClass("active");
         });
