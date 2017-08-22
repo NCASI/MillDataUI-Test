@@ -4,6 +4,16 @@
     ViewData["Title"] = "Edit";
 }
 
+<script>
+    saveURL();
+    function saveURL() {
+        referrer = document.referrer.toString();
+        localStorage.setItem('referrer', referrer);
+        //alert(cookie);
+    }
+</script>
+
+
 <h2>Edit</h2>
 
 <form asp-action="Edit">
@@ -15,7 +25,7 @@
         <div class="form-group">
             <label asp-for="FkMillKey" class="control-label col-md-2"></label>
             <div class="col-md-10">
-                <input disabled asp-for="FkMillKey" class="form-control" asp-items="ViewBag.FkMillKey">
+                <input readonly asp-for="FkMillKey" class="form-control" asp-items="ViewBag.FkMillKey">
                 <span asp-validation-for="FkMillKey" class="text-danger"></span>
             </div>
         </div>
@@ -75,10 +85,10 @@
         function backtomillinfo()
         {
             var oldURL = document.referrer;
-            //alert(oldURL);
             window.location = oldURL;
             return oldURL;
         }
+        
 
     </script>
 </div>
