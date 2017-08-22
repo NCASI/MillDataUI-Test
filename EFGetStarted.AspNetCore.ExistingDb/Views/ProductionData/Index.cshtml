@@ -3,8 +3,21 @@
 @{
     ViewData["Title"] = "Index";
 }
+<script>
+    var originalReferrer = localStorage.getItem('referrer');
+    var proximalReferrer = document.referrer.toString();
+    var substring = "/ProductionData/Edit/"
+    if (proximalReferrer.indexOf(substring) != -1) {
+        window.location = originalReferrer;
+    }
+    else {
+        window.location.href = "/";
+    }
+    
+</script>
 
-<h2>Index</h2>
+
+@*<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -68,4 +81,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
