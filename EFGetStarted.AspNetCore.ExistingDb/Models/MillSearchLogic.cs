@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 /****************************************************************************
 * CLASS: MillSearchLogic
-* This class handles application-wide search logic, such as
+* This class handles application-wide mill search logic, such as
 * the getMillKeyFromId query.
 * 
 * METHODS: 
