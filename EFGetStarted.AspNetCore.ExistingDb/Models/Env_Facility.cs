@@ -10,7 +10,7 @@ namespace MillData.Models
 
         public Env_Facility()
         {
-
+            //TODO: ADD ENV_FACILITY CONSTRUCTOR
         }
 
         public int PkEnvFacilityKey { get; set; }

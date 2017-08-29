@@ -718,6 +718,15 @@ namespace MillData.Models
             /**************************************************************
              * ENV DATABASE CONTEXT STARTS HERE
              * ***********************************************************/
+
+            modelBuilder.Entity<Env_Facility>(entity =>
+            {
+                //TODO: ADD ENV_FACILITY CONTEXT
+
+
+
+            });
+
             modelBuilder.Entity<Env_WoodThickness>(entity =>
             {
                 entity.HasKey(e => e.PkWoodKey)
@@ -733,14 +742,7 @@ namespace MillData.Models
        
             });
 
-            //TODO: ADD ENV_FACILITY CONTEXT
-            modelBuilder.Entity<Env_Facility>(entity =>
-            {
-                
-
-
-
-            });
+            
         }
     }
 }
