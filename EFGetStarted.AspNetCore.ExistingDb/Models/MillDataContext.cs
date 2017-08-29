@@ -31,6 +31,9 @@ namespace MillData.Models
         public virtual DbSet<SludgeData> SludgeData { get; set; }
         public virtual DbSet<Source> Source { get; set; }
         public virtual DbSet<WaterTreatmentData> WaterTreatmentData { get; set; }
+        
+        //ENV Database
+        public virtual DbSet<Env_WoodThickness> Env_WoodThickness { get; set; }
 
         public MillDataContext(DbContextOptions<MillDataContext> options)
             : base(options)
@@ -708,6 +711,26 @@ namespace MillData.Models
                     .HasForeignKey(d => d.FkSourceId)
                     .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_WaterTreatmentData_Source");
+            });
+
+
+
+            /**************************************************************
+             * ENV DATABASE CONTEXT STARTS HERE
+             * ***********************************************************/
+            modelBuilder.Entity<Env_WoodThickness>(entity =>
+            {
+                entity.HasKey(e => e.PkWoodKey)
+                    .HasName("PK_Env_WoodThickness");
+
+                entity.ToTable("ENV_WoodThickness");
+
+                entity.Property(e => e.PkWoodKey).HasColumnName("PK_WoodKey");
+
+                entity.Property(e => e.WoodId).HasColumnName("WoodID");
+
+                entity.Property(e => e.Units).HasColumnType("varchar(50)");
+       
             });
         }
     }
