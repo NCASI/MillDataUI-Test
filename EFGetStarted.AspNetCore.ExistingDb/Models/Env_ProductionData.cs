@@ -7,7 +7,8 @@ namespace MillData.Models
 {
     public class Env_ProductionData
     {
-        public int PkWoodKey { get; set; }
+        public int PkEnvProdId { get; set; }
+        public int FkFacilityKey { get; set; }
         public string ProdType { get; set; }
         public string Category { get; set; }
         public float? Amount { get; set; }

@@ -732,6 +732,15 @@ namespace MillData.Models
                 entity.Property(e => e.Units).HasColumnType("varchar(50)");
        
             });
+
+            //TODO: ADD ENV_FACILITY CONTEXT
+            modelBuilder.Entity<Env_Facility>(entity =>
+            {
+                
+
+
+
+            });
         }
     }
 }
