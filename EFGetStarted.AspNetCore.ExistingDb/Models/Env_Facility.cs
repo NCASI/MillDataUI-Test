@@ -7,10 +7,10 @@ namespace MillData.Models
 {
     public class Env_Facility
     {
-
+        //TODO: ADD MORE TABLE CONNECTIONS AS NECESSARY
         public Env_Facility()
         {
-            //TODO: ADD ENV_FACILITY CONSTRUCTOR
+            Env_ProductionData = new HashSet<Env_ProductionData>();
         }
 
         public int PkEnvFacilityKey { get; set; }
@@ -44,7 +44,7 @@ namespace MillData.Models
 
 
 
-        public virtual Env_WoodThickness FkWoodThicknessIdNavigation { get; set; }
+        public virtual ICollection<Env_ProductionData> Env_ProductionData { get; set; }
 
 
 
