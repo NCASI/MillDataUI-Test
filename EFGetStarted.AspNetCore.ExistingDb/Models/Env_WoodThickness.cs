@@ -7,7 +7,7 @@ namespace MillData.Models
 {
     public partial class Env_WoodThickness
     {
-        public Env_Facility()
+        public Env_WoodThickness()
         {
             Env_ProductionData = new HashSet<Env_ProductionData>();
         }
