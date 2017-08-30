@@ -41,9 +41,9 @@ namespace MillData.ViewComponents
          * OUTPUT:
          *      Aynchronous list of Mills where Mill ID = ID. 
          * ***************************************************************************/
-        private Task<List<Env_Facility>> GetItems(int id)
+        private Task<List<Env_Facility>> GetItems(int? key)
         {
-            var result = db.Env_Facility.Where(x => x.FkMillkey == id).ToListAsync();
+            var result = db.Env_Facility.Where(x => x.FkMillkey == key).ToListAsync();
             return result;
         }
     }
