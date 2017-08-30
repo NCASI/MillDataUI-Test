@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MillData.Models
+﻿namespace MillData.Models
 {
     public partial class Npdesdocs
     {

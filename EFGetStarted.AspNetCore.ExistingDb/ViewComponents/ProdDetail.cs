@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MillData.Models;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
-using System;
 
 namespace MillData.ViewComponents
 {
