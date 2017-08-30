@@ -819,7 +819,7 @@ namespace MillData.Models
 
                 entity.HasOne(d => d.FkWoodThickness)
                     .WithMany(p => p.Env_ProductionData)
-                    .HasForeignKey(d => d.FkWoodThickness)
+                    .HasForeignKey(d => d.FkWoodThicknessId)
                     .HasConstraintName("FK_ENV_ProductionData_ENV_WoodThickness");
             });
 
