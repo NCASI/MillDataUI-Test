@@ -142,6 +142,7 @@
         $("#detail").load(location.href + " #detail").ready(function () {
             $("#sidebutton1").addClass("active");
             $("#sidebutton2").removeClass("active");
+            $("#sidebutton3").removeClass("active");
         });
     }
 </script>
@@ -273,6 +274,8 @@
     <ul class="nav nav-pills nav-stacked" role="tablist" id="detailnav">
         <li role="presentation" id="sidebutton1" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
         <li role="presentation" id="sidebutton2"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
+        <li role="presentation" id="sidebutton3"><a href="#third" aria-controls="third" role="tab" data-toggle="tab">Survey Data</a></li>
+
     </ul>
     
     
@@ -308,8 +311,10 @@
                                 @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
                             </div>
                             <div role="tabpanel" class="tab-pane" id="second">
-                                @await Component.InvokeAsync(nameof(MillData.ViewComponents.EnvF), new { id = chosenid })
-                                @*@await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })*@
+                                @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="third">
+                                @await Component.InvokeAsync(nameof(EnvFacDetail), new { id = chosenid })
                             </div>
                         </div>
             }

@@ -31,7 +31,7 @@ namespace MillData.Models
         public string SecondaryProd { get; set; }
         public int? NumSpills { get; set; }
         public string SpillComments { get; set; }
-        public float? Penalty { get; set; }
+        public decimal Penalty { get; set; }
         public string PenaltyComments { get; set; }
         public string GenComments { get; set; }
         public string FossilFuelComments { get; set; }

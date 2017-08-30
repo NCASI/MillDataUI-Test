@@ -3,7 +3,7 @@
 @{
     //if no data available, show error
     if (Model.Any())
-    { <h3>Production Data: Mill @Model.First().PkEnvFacilityKey</h3> }
+    { <h3>EHS Survey Data: Mill @Model.First().FkMillkey</h3> }
     else
     { <div id="notif">No production data available.</div> }
 }
@@ -39,8 +39,7 @@
     //if no data available, show error
     if (Model.Any())
     {
-
-/* <table>
+<table>
     <thead>
         <tr>
             <th width="auto;"></th>
@@ -57,9 +56,10 @@
              //for every item, create a separate div
              <tr class="subdatasheet">
                      @{
-                         <td> <a href="~/ProductionData/Edit/@item.PkProductionId"><i class="icon-edit"></i> </a></td>
-
-                         //Handle prodcat null
+                         <td> <a href="~/ProductionData/Edit/@item.PkEnvFacilityKey"><i class="icon-edit"></i> </a></td>
+                        <td> @item.PkEnvFacilityKey</td>
+                        <td> @item.Year</td>
+                         @*//Handle prodcat null
                          if (@item.FkProdCat != null)
                          {
                              //Production Type
@@ -97,12 +97,12 @@
                         { <td><i>No source available.</i></td> }
 
                         //Comments
-                        <td>@item.Comments</td>
+                        <td>@item.Comments</td>*@
                      }
                 </tr>
             }
      </tbody>
-</table>*/
+</table>
 
     }
 }

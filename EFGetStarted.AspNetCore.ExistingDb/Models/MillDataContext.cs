@@ -755,6 +755,8 @@ namespace MillData.Models
 
                 entity.Property(e => e.SpillComments).HasColumnType("varchar(max)");
 
+                entity.Property(e => e.Penalty).HasColumnType("decimal(28,2)");
+
                 entity.Property(e => e.PenaltyComments).HasColumnType("varchar(max)");
 
                 entity.Property(e => e.GenComments).HasColumnType("varchar(max)");
