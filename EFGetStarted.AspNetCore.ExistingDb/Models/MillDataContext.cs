@@ -729,7 +729,7 @@ namespace MillData.Models
 
                 entity.Property(e => e.PkEnvFacilityKey).HasColumnName("PK_FacilityKey");
 
-                entity.Property(e => e.FkMillkey).HasColumnName("FK_MillKey");
+                entity.Property(e => e.FkMillKey).HasColumnName("FK_MillKey");
 
                 entity.Property(e => e.NotAfpa).HasColumnName("NotAFPA");
 
@@ -771,9 +771,9 @@ namespace MillData.Models
 
                 entity.Property(e => e.NtProducts).HasColumnName("NT_Products");
 
-                entity.HasOne(d => d.FkMillInformation)
+                entity.HasOne(d => d.FkMillKeyNavigation)
                     .WithMany(p => p.Env_Facility)
-                    .HasForeignKey(d => d.FkMillkey)
+                    .HasForeignKey(d => d.FkMillKey)
                     .HasConstraintName("FK_ENV_Facility_MillInformation");
 
                 entity.HasOne(d => d.FkNcasiProdcat)

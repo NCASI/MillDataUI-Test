@@ -11,7 +11,7 @@ namespace MillData.Models
         }
 
         public int PkEnvFacilityKey { get; set; }
-        public int? FkMillkey { get; set; }
+        public int? FkMillKey { get; set; }
         public bool? NotAfpa { get; set; }
         public int? FkParentKey { get; set; }
         public int? Year { get; set; }
@@ -43,7 +43,7 @@ namespace MillData.Models
 
         public virtual ICollection<Env_ProductionData> Env_ProductionData { get; set; }
 
-        public virtual MillInformation FkMillInformation { get; set; }
+        public virtual MillInformation FkMillKeyNavigation { get; set; }
         public virtual NcasiprodCat FkNcasiProdcat { get; set; }
 
 

@@ -3,7 +3,7 @@
 @{
     //if no data available, show error
     if (Model.Any())
-    { <h3>EHS Survey Data: Mill @Model.First().FkMillkey</h3> }
+    { <h3>EHS Survey Data: Mill @Model.First().FkMillKeyNavigation.MillId</h3> }
     else
     { <div id="notif">No production data available.</div> }
 }
@@ -42,12 +42,11 @@
 <table>
     <thead>
         <tr>
-            <th width="auto;"></th>
-            <th>Production Type</th>
-            <th>Production Category</th>
-            <th>Quantity</th>
-            <th>Source</th>
-            <th>Comments</th>
+            <th>Mill Key</th>
+            <th>Mill ID</th>
+            <th>Year</th>
+            <th>Facility Key</th>
+            
         </tr>
     </thead>
      <tbody>
@@ -56,48 +55,13 @@
              //for every item, create a separate div
              <tr class="subdatasheet">
                      @{
-                         <td> <a href="~/ProductionData/Edit/@item.PkEnvFacilityKey"><i class="icon-edit"></i> </a></td>
-                        <td> @item.PkEnvFacilityKey</td>
+                         @*<td> <a href="~/Env_Facility/Edit/@item.PkEnvFacilityKey"><i class="icon-edit"></i> </a></td>*@
+                         <td>@item.FkMillKey</td>
+                        <td> @item.FkMillKeyNavigation.MillId</td>
                         <td> @item.Year</td>
-                         @*//Handle prodcat null
-                         if (@item.FkProdCat != null)
-                         {
-                             //Production Type
-                             <td>@item.FkProdCat.ProdType</td>
-
-                             //Production category & description
-                             if (@item.FkProdCat.ProdCatDescription != null)
-                             {
-                                <td>
-                                    @item.FkProdCat.Category &nbsp;<a><i class="icon-question-sign" data-toggle="tooltip"
-                                        title="@item.FkProdCat.ProdCatDescription" data-placement="right"></i></a>
-                                </td>
-                             }
-                             else
-                             { <td>@item.FkProdCat.Category</td>}
-
-                        }
-                        else
-                        { <td><i>No production category available.</i></td> }
-
-                        //Quantity
-                        if (@item.Quantity != null)
-                        {
-                            <td>@String.Format("{0:n}", item.Quantity)  @item.Units</td>
-                        }
-
-                        //Source
-                        if (@item.FkSource != null)
-                        {
-                            <td>@item.FkSource.DataSource</td>
-                             if (@item.SourceYear != null)
-                                { <td>@item.SourceYear</td> }
-                        }
-                        else
-                        { <td><i>No source available.</i></td> }
-
-                        //Comments
-                        <td>@item.Comments</td>*@
+                         <td> @item.PkEnvFacilityKey</td>
+                        
+                         
                      }
                 </tr>
             }

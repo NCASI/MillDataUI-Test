@@ -32,6 +32,18 @@ namespace MillData.Models
           
         }
 
+        public int? getMillIdFromKey(int? key)
+        {
+            var results = db.MillInformation.Where(m => m.PkMillKey == key)
+                            .Select(u => new { id = u.MillId }).SingleOrDefault();
+
+            if (results != null)
+                return results.id;
+            else
+                return 0;
+
+        }
+
         public int? getFacilityKeyFromMillKey(int? id)
         {
             int? millkey = getMillKeyFromId(id);

@@ -39,7 +39,9 @@ namespace MillData.ViewComponents
          * ***************************************************************************/
         private Task<List<Env_Facility>> GetItems(int? key)
         {
-            var result = db.Env_Facility.Where(x => x.FkMillkey == key).ToListAsync();
+            var result = db.Env_Facility
+                .Include(m => m.FkMillKeyNavigation)
+                .Where(x => x.FkMillKey == key).ToListAsync();
             return result;
         }
     }

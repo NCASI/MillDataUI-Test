@@ -19,7 +19,7 @@ namespace MillData.Controllers
         // GET: Env_Facility
         public async Task<IActionResult> Index()
         {
-            var millDataContext = _context.Env_Facility.Include(e => e.FkMillInformation).Include(e => e.FkNcasiProdcat);
+            var millDataContext = _context.Env_Facility.Include(e => e.FkMillKeyNavigation).Include(e => e.FkNcasiProdcat);
             return View(await millDataContext.ToListAsync());
         }
 
@@ -32,7 +32,7 @@ namespace MillData.Controllers
             }
 
             var env_Facility = await _context.Env_Facility
-                .Include(e => e.FkMillInformation)
+                .Include(e => e.FkMillKeyNavigation)
                 .Include(e => e.FkNcasiProdcat)
                 .SingleOrDefaultAsync(m => m.PkEnvFacilityKey == id);
             if (env_Facility == null)
@@ -64,7 +64,7 @@ namespace MillData.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["FkMillkey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", env_Facility.FkMillkey);
+            ViewData["FkMillkey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", env_Facility.FkMillKey);
             ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "PkProdCatId", env_Facility.FkProdCatId);
             return View(env_Facility);
         }
@@ -82,7 +82,7 @@ namespace MillData.Controllers
             {
                 return NotFound();
             }
-            ViewData["FkMillkey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", env_Facility.FkMillkey);
+            ViewData["FkMillkey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", env_Facility.FkMillKey);
             ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "PkProdCatId", env_Facility.FkProdCatId);
             return View(env_Facility);
         }
@@ -119,7 +119,7 @@ namespace MillData.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["FkMillkey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", env_Facility.FkMillkey);
+            ViewData["FkMillkey"] = new SelectList(_context.MillInformation, "PkMillKey", "PkMillKey", env_Facility.FkMillKey);
             ViewData["FkProdCatId"] = new SelectList(_context.NcasiprodCat, "PkProdCatId", "PkProdCatId", env_Facility.FkProdCatId);
             return View(env_Facility);
         }
@@ -133,7 +133,7 @@ namespace MillData.Controllers
             }
 
             var env_Facility = await _context.Env_Facility
-                .Include(e => e.FkMillInformation)
+                .Include(e => e.FkMillKeyNavigation)
                 .Include(e => e.FkNcasiProdcat)
                 .SingleOrDefaultAsync(m => m.PkEnvFacilityKey == id);
             if (env_Facility == null)

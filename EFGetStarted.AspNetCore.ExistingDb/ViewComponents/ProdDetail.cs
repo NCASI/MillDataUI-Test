@@ -50,6 +50,7 @@ namespace MillData.ViewComponents
             var prodData = db.ProductionData
                 .Include(m => m.FkProdCat)
                 .Include(m => m.FkSource)
+                .Include(m => m.FkMillKeyNavigation)
                 .Where(m => m.FkMillKey == key);
             return prodData.ToListAsync(); 
         } 
