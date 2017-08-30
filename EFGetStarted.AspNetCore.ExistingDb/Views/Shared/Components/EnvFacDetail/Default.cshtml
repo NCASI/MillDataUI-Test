@@ -1,0 +1,108 @@
+﻿@model IEnumerable <MillData.Models.Env_Facility>
+
+@{
+    //if no data available, show error
+    if (Model.Any())
+    { <h3>Production Data: Mill @Model.First().PkEnvFacilityKey</h3> }
+    else
+    { <div id="notif">No production data available.</div> }
+}
+
+
+<style>
+    .leftdiv, .mitdiv, .rightdiv {
+        float: left;
+        width: 200px;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    table{
+        width:100%;
+    }
+    tbody tr:hover {
+        background-color: skyblue;
+    }
+
+    td {
+        /*font-size: 12px;*/
+        padding: 5px;
+    }
+    
+
+    thead {
+        background-color: white;
+        border-bottom: thin solid;
+    }
+</style>
+@{
+    //if no data available, show error
+    if (Model.Any())
+    {
+
+/* <table>
+    <thead>
+        <tr>
+            <th width="auto;"></th>
+            <th>Production Type</th>
+            <th>Production Category</th>
+            <th>Quantity</th>
+            <th>Source</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in Model)
+         {
+             //for every item, create a separate div
+             <tr class="subdatasheet">
+                     @{
+                         <td> <a href="~/ProductionData/Edit/@item.PkProductionId"><i class="icon-edit"></i> </a></td>
+
+                         //Handle prodcat null
+                         if (@item.FkProdCat != null)
+                         {
+                             //Production Type
+                             <td>@item.FkProdCat.ProdType</td>
+
+                             //Production category & description
+                             if (@item.FkProdCat.ProdCatDescription != null)
+                             {
+                                <td>
+                                    @item.FkProdCat.Category &nbsp;<a><i class="icon-question-sign" data-toggle="tooltip"
+                                        title="@item.FkProdCat.ProdCatDescription" data-placement="right"></i></a>
+                                </td>
+                             }
+                             else
+                             { <td>@item.FkProdCat.Category</td>}
+
+                        }
+                        else
+                        { <td><i>No production category available.</i></td> }
+
+                        //Quantity
+                        if (@item.Quantity != null)
+                        {
+                            <td>@String.Format("{0:n}", item.Quantity)  @item.Units</td>
+                        }
+
+                        //Source
+                        if (@item.FkSource != null)
+                        {
+                            <td>@item.FkSource.DataSource</td>
+                             if (@item.SourceYear != null)
+                                { <td>@item.SourceYear</td> }
+                        }
+                        else
+                        { <td><i>No source available.</i></td> }
+
+                        //Comments
+                        <td>@item.Comments</td>
+                     }
+                </tr>
+            }
+     </tbody>
+</table>*/
+
+    }
+}

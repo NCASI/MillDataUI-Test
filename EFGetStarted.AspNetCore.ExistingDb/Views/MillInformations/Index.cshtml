@@ -308,7 +308,8 @@
                                 @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
                             </div>
                             <div role="tabpanel" class="tab-pane" id="second">
-                                @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+                                @await Component.InvokeAsync(nameof(MillData.ViewComponents.EnvF), new { id = chosenid })
+                                @*@await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })*@
                             </div>
                         </div>
             }
