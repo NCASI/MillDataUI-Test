@@ -34,6 +34,8 @@ namespace MillData.Models
         
         //ENV Database
         public virtual DbSet<Env_WoodThickness> Env_WoodThickness { get; set; }
+        public virtual DbSet<Env_ProductionData> Env_ProductionData { get; set; }
+        public virtual DbSet<Env_Facility> Env_Facility { get; set; }
 
         public MillDataContext(DbContextOptions<MillDataContext> options)
             : base(options)

@@ -41,5 +41,20 @@ namespace MillData.Models
                 return 0;
           
         }
+
+        public int? getFacilityKeyFromMillKey(int? id)
+        {
+            int? millkey = getMillKeyFromId(id);
+
+
+            if (millkey > 0)
+            {
+                var results = db.Env_Facility.Where(m => m.PkEnvFacilityKey == millkey)
+                                    .Select(u => new { key = u.PkEnvFacilityKey }).SingleOrDefault();
+                return results.key;
+            }
+            else
+                return 0;
+        }
     }
 }
