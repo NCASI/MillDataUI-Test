@@ -792,7 +792,35 @@ namespace MillData.Models
                 entity.Property(e => e.WoodId).HasColumnName("WoodID");
 
                 entity.Property(e => e.Units).HasColumnType("varchar(50)");
-       
+
+            });
+
+            modelBuilder.Entity<Env_ProductionData>(entity =>
+            {
+                entity.HasKey(e => e.PkEnvProdId)
+                    .HasName("PK_Env_ProductionData");
+
+                entity.ToTable("ENV_ProductionData");
+
+                entity.Property(e => e.PkEnvProdId).HasColumnName("PK_ENVProdID");
+
+                entity.Property(e => e.ProdType).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Category).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Units).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Comments).HasColumnType("varchar(max)");
+
+                entity.HasOne(d => d.FkFacility)
+                    .WithMany(p => p.Env_ProductionData)
+                    .HasForeignKey(d => d.FkFacilityKey)
+                    .HasConstraintName("FK_ENV_ProductionData_ENV_Facility");
+
+                entity.HasOne(d => d.FkWoodThickness)
+                    .WithMany(p => p.Env_ProductionData)
+                    .HasForeignKey(d => d.FkWoodThickness)
+                    .HasConstraintName("FK_ENV_ProductionData_ENV_WoodThickness");
             });
 
             
