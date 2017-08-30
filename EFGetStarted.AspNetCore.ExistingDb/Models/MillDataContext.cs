@@ -721,9 +721,62 @@ namespace MillData.Models
 
             modelBuilder.Entity<Env_Facility>(entity =>
             {
-                //TODO: ADD ENV_FACILITY CONTEXT
+                entity.HasKey(e => e.PkEnvFacilityKey)
+                    .HasName("PK_Env_Facility");
 
+                entity.ToTable("ENV_Facility");
 
+                entity.Property(e => e.PkEnvFacilityKey).HasColumnName("PK_FacilityKey");
+
+                entity.Property(e => e.FkMillkey).HasColumnName("FK_MillKey");
+
+                entity.Property(e => e.NotAfpa).HasColumnName("NotAFPA");
+
+                entity.Property(e => e.FkParentKey).HasColumnName("FK_ParentKey");
+
+                entity.Property(e => e.Company).HasColumnType("varchar(75)");
+
+                entity.Property(e => e.CoBod).HasColumnName("CoBOD");
+
+                entity.Property(e => e.CoTss).HasColumnName("CoTSS");
+
+                entity.Property(e => e.CoAllSw).HasColumnName("CoALL_SW");
+
+                entity.Property(e => e.CoTri).HasColumnName("CoTRI");
+
+                entity.Property(e => e.FkProdCatId).HasColumnName("FK_ProdCatID");
+
+                entity.Property(e => e.Eprodcat).HasColumnType("varchar(5)");
+
+                entity.Property(e => e.PrimaryProd).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.SecondaryProd).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.SpillComments).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.PenaltyComments).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.GenComments).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.FossilFuelComments).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.BiomassComments).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.EnergyComments).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.NtProducts).HasColumnType("varchar(max)");
+
+                entity.Property(e => e.NtProducts).HasColumnName("NT_Products");
+
+                entity.HasOne(d => d.FkMillInformation)
+                    .WithMany(p => p.Env_Facility)
+                    .HasForeignKey(d => d.FkMillkey)
+                    .HasConstraintName("FK_ENV_Facility_MillInformation");
+
+                entity.HasOne(d => d.FkNcasiProdcat)
+                    .WithMany(p => p.Env_Facility)
+                    .HasForeignKey(d => d.FkProdCatId)
+                    .HasConstraintName("FK_ENV_Facility_NCASIProdCat");
 
             });
 

@@ -9,6 +9,7 @@ namespace MillData.Models
         {
             HistoricalMillInfo = new HashSet<HistoricalMillInfo>();
             ProductionData = new HashSet<ProductionData>();
+            Env_Facility = new HashSet<Env_Facility>();
         }
 
         public int PkProdCatId { get; set; }
@@ -22,6 +23,8 @@ namespace MillData.Models
 
         public virtual ICollection<HistoricalMillInfo> HistoricalMillInfo { get; set; }
         public virtual ICollection<ProductionData> ProductionData { get; set; }
+        public virtual ICollection<Env_Facility> Env_Facility { get; set; }
+
         public virtual Epasubcat FkEpasubcat { get; set; }
     }
 }

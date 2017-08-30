@@ -21,6 +21,9 @@ namespace MillData.Models
             ProductionData = new HashSet<ProductionData>();
             SludgeData = new HashSet<SludgeData>();
             WaterTreatmentData = new HashSet<WaterTreatmentData>();
+            Env_Facility = new HashSet<Env_Facility>();
+
+
         }
 
         public int PkMillKey { get; set; }
@@ -109,6 +112,7 @@ namespace MillData.Models
         public virtual ICollection<ProductionData> ProductionData { get; set; }
         public virtual ICollection<SludgeData> SludgeData { get; set; }
         public virtual ICollection<WaterTreatmentData> WaterTreatmentData { get; set; }
+        public virtual ICollection<Env_Facility> Env_Facility { get; set; }
 
         [DisplayName("EPA Subcategory")]
         public virtual Epasubcat FkEpasubcat { get; set; }

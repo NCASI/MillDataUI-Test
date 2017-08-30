@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace MillData.Models
 {
@@ -16,7 +17,7 @@ namespace MillData.Models
         public int PkEnvFacilityKey { get; set; }
         public int? FkMillkey { get; set; }
         public bool? NotAfpa { get; set; }
-        public int? FK_ParentKey { get; set; }
+        public int? FkParentKey { get; set; }
         public int? Year { get; set; }
         public string Company { get; set; }
         public bool? HasCodischarge { get; set; }
@@ -46,6 +47,8 @@ namespace MillData.Models
 
         public virtual ICollection<Env_ProductionData> Env_ProductionData { get; set; }
 
+        public virtual MillInformation FkMillInformation { get; set; }
+        public virtual NcasiprodCat FkNcasiProdcat { get; set; }
 
 
     }
