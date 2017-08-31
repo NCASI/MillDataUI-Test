@@ -19,7 +19,7 @@ namespace MillData.Controllers
         // GET: Env_ProductionData
         public async Task<IActionResult> Index()
         {
-            var millDataContext = _context.Env_ProductionData.Include(e => e.FkFacility).Include(e => e.FkWoodThickness);
+            var millDataContext = _context.Env_ProductionData.Include(e => e.FkFacilityNavigation).Include(e => e.FkWoodThickness);
             return View(await millDataContext.ToListAsync());
         }
 
@@ -32,7 +32,7 @@ namespace MillData.Controllers
             }
 
             var env_ProductionData = await _context.Env_ProductionData
-                .Include(e => e.FkFacility)
+                .Include(e => e.FkFacilityNavigation)
                 .Include(e => e.FkWoodThickness)
                 .SingleOrDefaultAsync(m => m.PkEnvProdId == id);
             if (env_ProductionData == null)
@@ -133,7 +133,7 @@ namespace MillData.Controllers
             }
 
             var env_ProductionData = await _context.Env_ProductionData
-                .Include(e => e.FkFacility)
+                .Include(e => e.FkFacilityNavigation)
                 .Include(e => e.FkWoodThickness)
                 .SingleOrDefaultAsync(m => m.PkEnvProdId == id);
             if (env_ProductionData == null)

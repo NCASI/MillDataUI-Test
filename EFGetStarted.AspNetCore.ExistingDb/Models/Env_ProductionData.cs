@@ -12,6 +12,6 @@
         public string Comments { get; set; }
 
         public virtual Env_WoodThickness FkWoodThickness { get; set; }
-        public virtual Env_Facility FkFacility { get; set; }
+        public virtual Env_Facility FkFacilityNavigation { get; set; }
     }
 }
