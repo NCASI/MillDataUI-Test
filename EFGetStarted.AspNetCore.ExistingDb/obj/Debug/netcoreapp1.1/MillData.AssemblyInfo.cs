@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("MillData")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]

@@ -1,0 +1,325 @@
+@model IEnumerable<MillData.Models.MillInformation>
+@using MillData.ViewComponents
+@using System.Net.Http
+
+@{
+
+    ViewData["Title"] = "Index";
+}
+<style>
+    html, body {
+        overflow-x: hidden;
+        height: 100%;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .datasheet, .subform, .form {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        
+    }
+
+    .datasheet {
+        height: 35%;
+        position: fixed;
+        float: left;
+        overflow-x: auto;
+        /*overflow-y: scroll;*/
+        border-bottom: solid black;
+        border-width: medium;
+    }
+
+    .subform {
+        height: 35%;
+        margin-top: 1%;
+        margin-bottom: 2.5%;
+        position: absolute;
+        bottom: 0;
+        float: left;
+        overflow-x: auto;
+        overflow-y: scroll;
+    }
+
+    footer, .footer {
+        width: 100%;
+        height: auto;
+        float: left;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .footerline {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        bottom: 20px;
+    }
+        
+    .epasubcat {
+        text-align: center;
+    }
+
+    #datasheet tr:hover {
+        background-color: skyblue;
+        border-top: solid;
+    }
+    td {
+        font-size: 12px;
+        padding: 5px;
+    }
+    thead{
+        background-color:white;
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+    .detail{
+        width:90%;
+        float:left;
+        padding-left:3em;
+    }
+    #detailnav{
+        width:10%;
+        float:left;
+        font-size:1vw;
+    }
+
+    #notif{
+        text-align:center;
+        vertical-align: central;
+        font-size:2vw;
+        font-weight:bold;
+    }
+</style>
+
+<div class="form">
+    <h2>Mill Information</h2>
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+        <p>
+            Search Mill ID:<span> @Html.TextBox("IDSearchString", ViewBag.CurrentFilter as string, new { @id = "searchbox" })</span>
+            <input type="submit" class="millIDsearch" value="Search" onclick="return checksearch()"/>
+            <script>
+                //Handles input validation for the Mill ID search (numeric input only)
+                function checksearch() {
+                    var searchterm = document.getElementById("searchbox").value;
+                    console.log(searchterm, isNaN(searchterm));
+                    if (searchterm != "") {
+                        if (isNaN(searchterm)) {
+                            alert("Error: Please enter a numerical Mill ID.");
+                            return false;   
+                        }
+                    }
+                }
+            </script>
+        </p>
+    }
+
+    <br />
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+</div>
+<script>
+    /***********************************************************************
+    * This function handles the asynchronous delivery of detail data
+    * It is fired by an onclick event for each row in the master datasheet
+    * For more detail on how that works, see the comment in #detail
+    ************************************************************************/
+    function clickfn(id) {
+
+        //use JS (supported in HTML5) to change URL without reloading
+        window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
+
+        //reload only the detail DOM of the page, forcing it to execute its code
+        //if the production tab is active, change to mill detail tab
+        $("#detail").load(location.href + " #detail").ready(function () {
+            $("#sidebutton1").addClass("active");
+            $("#sidebutton2").removeClass("active");
+            $("#sidebutton3").removeClass("active");
+        });
+    }
+</script>
+
+<div class="datasheet" id="datasheet">
+    <table class="table">
+        <thead>
+            <tr class="tableheader">
+                <th></th>
+                <th></th>
+                <th>
+                    @Html.ActionLink("Mill ID", "Index", new { sortOrder = ViewBag.IDSort })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkMillType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MillStatus)
+                </th>
+                <th data-toggle="tooltip" title="Date status became effective." data-placement="right">
+                    @Html.DisplayNameFor(model => model.StatusDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingAddress2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingCity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingState)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingPostcode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShippingCountry)
+                </th>
+              
+                @*<th>
+                    @Html.ActionLink("EPA Subcategory", "Index", new { sortOrder = ViewBag.EPASort })
+                  
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naprodcat)
+                </th>*@
+                <th data-toggle="tooltip" title="Primary production category of mill." data-placement="right">
+
+                    @Html.DisplayNameFor(model => model.ProdCat1)
+                </th>
+                @*<th data-toggle="tooltip" title="Secondary production category of mill." data-placement="right">
+                    @Html.DisplayNameFor(model => model.ProdCat2)
+                </th>*@
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Take(100))
+            {
+                //clickable rows for detail, modified for asynchronous delivery of detail data
+                <tr class="clickable" onclick="return clickfn(@item.MillId)">
+
+                    <td><a asp-action="Details" asp-route-id="@item.MillId"><i class="icon-zoom-in"></i></a></td>
+                    <td><a asp-action="Edit" asp-route-id="@item.MillId"><i class="icon-edit"></i></a></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MillId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FkMillType.PkTypeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MillStatus)
+                    </td>
+                    <td>
+                        @{ if (item.StatusDate != null && item.StatusDate.Value != null)
+                            {
+                                string date = item.StatusDate.Value.ToString("MM/dd/yyyy");
+                                @Html.DisplayFor(model => date)
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingAddress2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingState)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingPostcode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShippingCountry)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.PkMillKey"><font color="red">Delete</font></a><br />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    <script>
+                document.getElementById("datasheet").addEventListener("scroll", function () {
+                    var translate = "translate(0," + this.scrollTop + "px)";
+                    this.querySelector("thead").style.transform = translate;
+                });
+</script>
+<div class="subform">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-stacked" role="tablist" id="detailnav">
+        <li role="presentation" id="sidebutton1" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Mill Detail</a></li>
+        <li role="presentation" id="sidebutton2"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">Production Data</a></li>
+        <li role="presentation" id="sidebutton3"><a href="#third" aria-controls="third" role="tab" data-toggle="tab">Survey Data</a></li>
+
+    </ul>
+    
+    
+
+    <div class="detail" id="detail">
+        @*
+        *************************************************************************
+        * This code executes whenever the detail DOM is loaded/reloaded
+        *   Gets the URL path from the browser
+        *   If the path specifies a mill ID at the end, gets that ID
+        *   Invokes the viewcomponents, passing mill ID in as an arg
+        *************************************************************************
+        *@
+        @{
+            //Gets Mill ID from path
+            string path = Context.Request.Path.ToString();
+
+            //If path != '/', that is a mill ID is chosen for detail,
+            //display details. Else display error
+            if (path != "/" && path != "" && path != null)
+            {
+                int chosenid = 1;
+                var split = path.Split('/');
+
+                    if (split.Length >2 && !(split[3] == "" || split[3] == null))
+                    { chosenid = Int32.Parse(split[3]); }
+
+
+                        //Tab panes
+                        <div class="tab-content">
+
+                            <div role="tabpanel" class="tab-pane active" id="first">
+                                @await Component.InvokeAsync(nameof(MillDetail), new { id = chosenid })
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="second">
+                                @await Component.InvokeAsync(nameof(ProdDetail), new { id = chosenid })
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="third">
+                                @await Component.InvokeAsync(nameof(EnvFacDetail), new { id = chosenid })
+                            </div>
+                        </div>
+            }
+            else
+            { <div id="notif">Please choose a mill from the list above to see details.</div> }
+    }
+</div>
+</div>

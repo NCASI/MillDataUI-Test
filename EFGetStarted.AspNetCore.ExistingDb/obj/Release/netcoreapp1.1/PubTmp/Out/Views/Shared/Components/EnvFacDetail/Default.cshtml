@@ -1,0 +1,72 @@
+﻿@model IEnumerable <MillData.Models.Env_Facility>
+
+@{
+    //if no data available, show error
+    if (Model.Any())
+    { <h3>EHS Survey Data: Mill @Model.First().FkMillKeyNavigation.MillId</h3> }
+    else
+    { <div id="notif">No production data available.</div> }
+}
+
+
+<style>
+    .leftdiv, .mitdiv, .rightdiv {
+        float: left;
+        width: 200px;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    table{
+        width:100%;
+    }
+    tbody tr:hover {
+        background-color: skyblue;
+    }
+
+    td {
+        /*font-size: 12px;*/
+        padding: 5px;
+    }
+    
+
+    thead {
+        background-color: white;
+        border-bottom: thin solid;
+    }
+</style>
+@{
+    //if no data available, show error
+    if (Model.Any())
+    {
+<table>
+    <thead>
+        <tr>
+            <th>Mill Key</th>
+            <th>Mill ID</th>
+            <th>Year</th>
+            <th>Facility Key</th>
+            
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in Model)
+         {
+             //for every item, create a separate div
+             <tr class="subdatasheet">
+                     @{
+                         @*<td> <a href="~/Env_Facility/Edit/@item.PkEnvFacilityKey"><i class="icon-edit"></i> </a></td>*@
+                         <td>@item.FkMillKey</td>
+                        <td> @item.FkMillKeyNavigation.MillId</td>
+                        <td> @item.Year</td>
+                         <td> @item.PkEnvFacilityKey</td>
+                        
+                         
+                     }
+                </tr>
+            }
+     </tbody>
+</table>
+
+    }
+}

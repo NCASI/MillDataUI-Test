@@ -1,0 +1,235 @@
+@model MillData.Models.MillInformation
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .dl-horizontal dt{
+        overflow: auto;
+        width:200px;
+        align-content:right;
+
+    }
+
+    .dl-horizontal dd{
+        margin-left: 20%;
+    }
+
+</style>
+<h2>Details</h2>
+
+<div>
+    <h4>MillInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MillId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MillId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+        <dd>
+           @{
+               //Get lat and long from model
+               string latval = Model.Latitude;
+               string longval = Model.Longitude;
+
+               //If the db actually has valid lat/long values, proceed
+               if (!(String.IsNullOrEmpty(latval) || String.IsNullOrWhiteSpace(latval) ||
+                   String.IsNullOrEmpty(longval) || String.IsNullOrWhiteSpace(longval)))
+               {
+
+                   //Trim the trailing quote 
+                   latval = latval.Trim('"');
+                   longval = longval.Trim('"');
+
+                   //Replace errant quotes with a single " for seconds
+                   latval = latval.Replace("\"\"", "\"");
+                   longval = longval.Replace("\"\"", "\"");
+
+                   //Combine into one string
+                   string coordinate = latval + ", " + longval;
+
+                   //Append to hyperlink and display
+                <a href="https://www.google.com/maps/place/@coordinate" target="_blank">
+                    @Html.DisplayFor(modelItem => coordinate)
+                </a>
+               }
+
+        }
+     
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.Naprodcat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naprodcat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdCat1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdCat1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdCat2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdCat2)
+        </dd>
+        <hr>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddress2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddress2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingState)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingState)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingPostcode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingPostcode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingCountry)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingCountry)
+        </dd>
+        <br>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostalAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalAddress2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostalAddress2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostalCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalState)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostalState)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalPostcode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostalPostcode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCountry)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostalCountry)
+        </dd>
+        <hr>
+        <dt>
+            @Html.DisplayNameFor(model => model.Eparegion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Eparegion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+        <dd>
+         @{
+             //Get website from model
+             string website = Model.Website;
+
+             //if website is not valid, set to empty
+             if (String.Compare(website, "http://") == 0 || String.Compare(website, "http://") == 0)
+             { website = ""; }
+        }
+            <a href="@Model.Website">
+            @Html.DisplayFor(model => website)</a>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+        <dd>
+            @{
+                //if comment string is NULL set to empty
+                string comstr = Model.Comments;
+                if (String.Compare(comstr, "NULL") == 0)
+                { comstr = ""; }
+            }
+            @Html.DisplayFor(modelItem => comstr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MillStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MillStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusDate)
+        </dt>
+        <dd>
+           @{ 
+                //if date is not null, set to MM/dd/yyy format and display
+               if (Model.StatusDate != null && Model.StatusDate.Value != null)
+               {
+                   string date = Model.StatusDate.Value.ToString("MM/dd/yyyy");
+                @Html.DisplayFor(model => date)
+               }
+            }
+          </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FkEpasubcat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FkEpasubcat.Subcat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FkMillType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FkMillType.PkTypeId)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>  |  <a asp-action="Edit" asp-route-id="@Model.PkMillKey">Edit</a> 
+    
+</div>

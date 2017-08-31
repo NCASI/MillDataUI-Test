@@ -1,0 +1,65 @@
+@model MillData.Models.ProductionData
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ProductionData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="PkProductionId" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Units)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Units)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SourceYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FkMillKeyNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FkMillKeyNavigation.PkMillKey)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FkProdCat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FkProdCat.PkProdCatId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FkSource)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FkSource.DataSource)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

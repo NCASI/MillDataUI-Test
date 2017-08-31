@@ -1,0 +1,84 @@
+@model IEnumerable<MillData.Models.ProductionData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<script>
+    var originalReferrer = localStorage.getItem('referrer');
+    var proximalReferrer = document.referrer.toString();
+    var substring = "/ProductionData/Edit/"
+    if (proximalReferrer.indexOf(substring) != -1) {
+        window.location = originalReferrer;
+    }
+    else {
+        window.location.href = "/";
+    }
+    
+</script>
+
+
+@*<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Units)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SourceYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkMillKeyNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkProdCat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkSource)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkMillKeyNavigation.PkMillKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkProdCat.PkProdCatId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkSource.DataSource)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PkProductionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PkProductionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PkProductionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

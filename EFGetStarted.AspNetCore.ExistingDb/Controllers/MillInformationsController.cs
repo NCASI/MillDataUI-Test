@@ -5,15 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MillData.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace MillData.Controllers
 {
     public class MillInformationsController : Controller
     {
         private readonly MillDataContext _context;
+       
         public MillInformationsController(MillDataContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         /***************************************************************************

@@ -29,9 +29,13 @@ namespace MillData
         {
             // Add framework services.
             services.AddMvc();
+            services.AddDbContext<MillDataContext>(options =>
+            {
+                var connString =
+                Configuration.GetConnectionString("MDBConnection");
+                options.UseSqlServer(connString);
 
-            var connection = @"Server=DESKTOP-9I6CKCV\SQLEXPRESS;Database=MillData;Trusted_Connection=True;";
-            services.AddDbContext<MillDataContext>(options => options.UseSqlServer(connection));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
