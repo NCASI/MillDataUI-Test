@@ -815,7 +815,7 @@ namespace MillData.Models
 
                 entity.Property(e => e.Comments).HasColumnType("varchar(max)");
 
-                entity.HasOne(d => d.FkFacility)
+                entity.HasOne(d => d.FkFacilityNavigation)
                     .WithMany(p => p.Env_ProductionData)
                     .HasForeignKey(d => d.FkFacilityKey)
                     .HasConstraintName("FK_ENV_ProductionData_ENV_Facility");
