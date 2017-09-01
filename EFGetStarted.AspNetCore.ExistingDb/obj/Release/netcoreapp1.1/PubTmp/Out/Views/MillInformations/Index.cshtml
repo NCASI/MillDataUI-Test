@@ -138,6 +138,7 @@
         window.history.pushState("object or string", "Title", "/MillInformations/Index/" + id);
         $("#detail").unload();
         $("#detail").html("<p id='notif'>Loading...</p>");
+
         //reload only the detail DOM of the page, forcing it to execute its code
         //if the production tab is active, change to mill detail tab
         $("#detail").load(location.href + " #detail").ready(function () {

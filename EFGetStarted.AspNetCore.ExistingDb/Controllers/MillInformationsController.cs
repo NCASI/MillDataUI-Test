@@ -32,7 +32,9 @@ namespace MillData.Controllers
          *      Returns a View of mill information results.
          *  
          *  ************************************************************************/
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async Task<IActionResult> Index(string sortOrder, string IDSearchString, int? id)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             //Create the mill data context and the results object to be modified
             var millDataContext = _context.MillInformation.Include(m => m.FkEpasubcat);
