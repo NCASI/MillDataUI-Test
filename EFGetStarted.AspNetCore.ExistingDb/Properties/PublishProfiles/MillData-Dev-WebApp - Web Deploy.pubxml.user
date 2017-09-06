@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_NewBackgroundProfile>False</_NewBackgroundProfile>
   </PropertyGroup>
   <ItemGroup>
-    <DestinationConnectionStrings Include="connection">
+    <DestinationConnectionStrings Include="MDBConnection">
       <Value>Server=tcp:milldata-dev.database.windows.net,1433;Initial Catalog=MillData-Test;Persist Security Info=False;User ID=Ncasi-milldata-admin;Password=Md1212@@!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
