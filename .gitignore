@@ -1,3 +1,5 @@
 
 *.docx
 ~WRL1908.tmp
+EFGetStarted.AspNetCore.ExistingDb/appsettings.json
+EFGetStarted.AspNetCore.ExistingDb/appsettings.Development.json
